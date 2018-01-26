@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum TileTypes {Background, Stonewall, Water, Thorntendrils, Deep1, Deep2, Deep3};
+
 public class TileFactory : MonoBehaviour {
 
 
@@ -10,8 +12,8 @@ public class TileFactory : MonoBehaviour {
     float length;
     public GameObject Tile;
     public List<GameObject> Tiles;
-    float[,] tilemap = new float[,] { {1 , 0 } , 
-                                     { 0, 1 } };
+	TileTypes[,] tilemap = new TileTypes[,] { {TileTypes.Background , TileTypes.Stonewall } , 
+		{ TileTypes.Stonewall, TileTypes.Background } };
 
 	// Use this for initialization
 	void Start () {
@@ -30,10 +32,10 @@ public class TileFactory : MonoBehaviour {
             for(int j=0; j<tilemap.GetLength(i); j++)
             {
 
-                if (tilemap[i,j]==1)
+				if (tilemap[i,j] == TileTypes.Background)
                 {
                     Debug.Log("create " + tilemap[i,j]+ " at " + i + ", " + j);
-                    Instantiate(Tile, new Vector2(i,j), Quaternion.identity);
+                    Instantiate(Tile, new Vector2(-i,-j), Quaternion.identity);
                 }
             }
             
