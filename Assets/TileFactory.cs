@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TileFactory : MonoBehaviour {
 
+    public List<GameObject> Tiles;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +15,12 @@ public class TileFactory : MonoBehaviour {
 	void Update () {
 		
 	}
+
+   public  void IEnumerator()
+    {
+
+
+
+    }
+
 }
