@@ -22,9 +22,11 @@ GameObject:
   - component: {fileID: 212395183842180304}
   - component: {fileID: 114622617108898228}
   - component: {fileID: 95419582684804860}
+  - component: {fileID: 60883684932546178}
+  - component: {fileID: 50627631990122772}
   m_Layer: 0
   m_Name: Turtle
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,6 +44,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50627631990122772
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1280571041730762}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &60883684932546178
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1280571041730762}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5219804, y: 0.49890092}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.2202071, y: -0.20983842}
+      - {x: 0.3139571, y: -0.07702592}
+      - {x: 0.4077071, y: -0.04577592}
+      - {x: 0.4077071, y: 0.00891158}
+      - {x: 0.2827071, y: 0.13391158}
+      - {x: 0.2123946, y: 0.19641158}
+      - {x: 0.1342696, y: 0.23547408}
+      - {x: -0.068855405, y: 0.23547408}
+      - {x: -0.1313554, y: 0.22766158}
+      - {x: -0.3422929, y: 0.13391158}
+      - {x: -0.4907304, y: 0.08703658}
+      - {x: -0.4907304, y: -0.03015092}
+      - {x: -0.4829179, y: -0.07702592}
+      - {x: -0.4047929, y: -0.10827592}
+      - {x: -0.2954179, y: -0.08483842}
+      - {x: -0.1938554, y: -0.20983842}
+      - {x: -0.1547929, y: -0.23327592}
+      - {x: -0.029792905, y: -0.23327592}
+      - {x: 0.1264571, y: -0.21765092}
+      - {x: 0.1655196, y: -0.23327592}
+      - {x: 0.2123946, y: -0.23327592}
 --- !u!95 &95419582684804860
 Animator:
   serializedVersion: 3
@@ -75,6 +142,7 @@ MonoBehaviour:
   speed: 1
   alive: 0
   tileFactory: {fileID: 0}
+  animalFactory: {fileID: 0}
 --- !u!212 &212395183842180304
 SpriteRenderer:
   m_ObjectHideFlags: 1

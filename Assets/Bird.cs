@@ -53,6 +53,25 @@ public Direction getDirection(Vector2 from, Vector2 to) {
         }
 }
 
+public void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag=="Tile" )
+        {
+            if (col.gameObject.GetComponent<Tiles>().myType == TileTypes.Stonewall)
+            {
+                gameObject.GetComponent<Animator>().SetBool("fly", true);
+                gameObject.GetComponent<SpriteRenderer>().sortingOrder=3;
+            }
+            else
+            {
+                gameObject.GetComponent<Animator>().SetBool("fly", false);
+            }
+        }
+
+    }
+
+  
+
 public IEnumerator moveTo(Vector2 to)
 {
         Debug.LogWarning ("start corouting");
