@@ -7,12 +7,14 @@ public class InputController : MonoBehaviour {
 
 public TileTypes currentMode;
 public Tiles currentTile;
+public TileFactory TileFactory;
 
 
-// Use this for initialization
-void Start () {
+    // Use this for initialization
+    void Start () {
         currentMode = TileTypes.Stonewall;
-}
+        currentTile =null;
+    }
 
 // Update is called once per frame
 void Update () {
@@ -24,23 +26,38 @@ void Update () {
 
 
 public void SetModeStonewall()
-{
-								currentMode = TileTypes.Stonewall;
+{if (currentMode!= TileTypes.Stonewall)
+        {
+            currentMode = TileTypes.Stonewall;
+            
+        }
 }
 
 public void SetModeThorntendrils()
 {
-								currentMode = TileTypes.Thorntendrils;
+        if (currentMode != TileTypes.Thorntendrils)
+        {
+            currentMode = TileTypes.Thorntendrils;
+           
+        }
 }
 
 public void SetModeDeep()
 {
-								currentMode = TileTypes.DeepA;
+        if (currentMode != TileTypes.DeepA)
+        {
+            currentMode = TileTypes.DeepA;
+           
+        }
 }
 
 public void SetModeWater()
 {
-								currentMode = TileTypes.Water;
+        if (currentMode != TileTypes.Water)
+        {
+            currentMode = TileTypes.Water;
+            
+        }
 }
 
 }
