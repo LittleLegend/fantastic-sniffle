@@ -28,6 +28,7 @@ public class Tiles : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+
             tileFactory.addTile(InputController.GetComponent<InputController>().currentMode, gameObject.transform.position);
             tileFactory.destroyTile(gameObject);
         }

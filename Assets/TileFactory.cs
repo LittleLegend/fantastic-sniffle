@@ -36,6 +36,8 @@ void Update () {
 
 public void addTile(TileTypes tile, Vector2 position) {
       
+
+
         switch(tile)
         {
             case TileTypes.Stonewall: tiles.Add(Instantiate(Stonewall, position, Quaternion.identity));
