@@ -118,7 +118,6 @@ public IEnumerator roaming()
 
                 Vector3 AnimalStartPosition = gameObject.transform.position;
                 Vector3 dir = (Point - AnimalStartPosition).normalized;
-                float distanceToPointFromStart = Vector2.Distance(Point, AnimalStartPosition);
                 float distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
 
                 while (distanceToPoint >= 0.01)
