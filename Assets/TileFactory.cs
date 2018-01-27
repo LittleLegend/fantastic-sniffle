@@ -35,10 +35,19 @@ void Update () {
 }
 
 public void addTile(TileTypes tile, Vector2 position) {
+      
         tiles.Add(Instantiate (Stonewall, position, Quaternion.identity));
 }
 
-public void createsTiles() {
+    public void destroyTile(GameObject ClickedTile)
+    {
+        tiles.Remove(ClickedTile);
+        Destroy(ClickedTile);
+        
+    }
+
+
+    public void createsTiles() {
         int width = Level1.tilemap.GetLength(0);
         int height = Level1.tilemap.GetLength(1);
 

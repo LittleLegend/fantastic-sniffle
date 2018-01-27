@@ -6,14 +6,15 @@ public class Tiles : MonoBehaviour
 {
 
     public InputController InputController;
-
+    public TileFactory tileFactory;
+    public  TileTypes myType;
 
 
     // Use this for initialization
     void Start()
     {
         InputController = gameObject.GetComponent<InputController>();
-
+        tileFactory = GameObject.Find("TileFactory").GetComponent<TileFactory>();
     }
 
     // Update is called once per frame
@@ -22,18 +23,16 @@ public class Tiles : MonoBehaviour
 
     }
 
-    public void OnMouseOver()
+    
+        public void OnMouseOver()
     {
         if (Input.GetMouseButton(0))
         {
-            Debug.LogWarning("Hey");
+            tileFactory.addTile(TileTypes.Stonewall, gameObject.transform.position);
+            tileFactory.destroyTile(gameObject);
         }
     }
 
-    public void Clicked()
-    {
-        Debug.Log("Hi");
-        InputController.currentTile = gameObject.GetComponent<Tiles>();
 
-    }
+ 
 }

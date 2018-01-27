@@ -7,7 +7,7 @@ public class InputController : MonoBehaviour {
 public enum Modes { Stonewall, Thorntendrils, Deep, Water };
 public Modes currenMode;
 public Tiles currentTile;
-public TileFactory tileFactory;
+
 
 // Use this for initialization
 void Start () {
@@ -19,10 +19,7 @@ void Update () {
 
 }
 
-public void OnMouseClick()
-{
-								tileFactory.addTile(TileTypes.Stonewall, new Vector2(Mathf.RoundToInt(Input.mousePosition.x), Mathf.RoundToInt(Input.mousePosition.y)));
-}
+
 
 
 
