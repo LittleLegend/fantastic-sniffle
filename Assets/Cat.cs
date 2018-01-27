@@ -30,28 +30,20 @@ public Direction getDirection(PathFind.Point from, PathFind.Point to) {
         bool up = from.y > to.y;
 
         if (down && !left && !right) {
-                Debug.LogWarning("should go down");
                 return Direction.DOWN;
         } else if (down && left) {
-                Debug.LogWarning("should go down left");
                 return Direction.DOWN_LEFT;
         } else if (down && right) {
-                Debug.LogWarning("should go down right");
                 return Direction.DOWN_RIGHT;
         } else if (up && !left && !right) {
-                Debug.Log("should go up");
                 return Direction.UP;
         } else if (up && left) {
-                Debug.LogWarning("should go up left");
                 return Direction.UP_LEFT;
         } else if (up && right) {
-                Debug.LogWarning("should go up right");
                 return Direction.UP_RIGHT;
         } else if (right) {
-                Debug.LogWarning("should go right");
                 return Direction.RIGHT;
         } else {
-                Debug.LogWarning("should go left");
                 return Direction.LEFT;
         }
 }
@@ -69,7 +61,6 @@ public IEnumerator roaming()
 
         List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
 
-        Debug.LogWarning (path.Count);
 
         if (path.Count > 0) {
                 Direction rand = getDirection(from, path[0]);
@@ -133,7 +124,6 @@ public IEnumerator roaming()
 
                         distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
                         gameObject.transform.position += dir / 100 * speed;
-//Debug.Log(distanceToPoint);
 
                         yield return null;
                 }
@@ -143,8 +133,6 @@ public IEnumerator roaming()
 
 public IEnumerator randomizeRoaming(int percent, int seconds)
 {
-        Debug.Log(alive);
-
         while (alive == true)
         {
                 yield return new WaitForSeconds(seconds);
@@ -157,7 +145,6 @@ public IEnumerator randomizeRoaming(int percent, int seconds)
                 }
 
         }
-
 }
 
 public bool[,] getCollisionMap(TileTypes[,] tileMap)
