@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Animal
   - Tile
+  - Bird
+  - Turtle
+  - Cat
   layers:
   - Default
   - TransparentFX

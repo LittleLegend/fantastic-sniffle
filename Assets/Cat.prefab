@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 50982390698868532}
   m_Layer: 0
   m_Name: Cat
-  m_TagString: Animal
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

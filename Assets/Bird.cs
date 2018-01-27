@@ -67,7 +67,12 @@ public void OnTriggerEnter2D(Collider2D col)
             
         }
 
-    }
+        if (col.gameObject.tag == "Turtle")
+        {
+            Debug.Log("You Died");
+        }
+
+        }
     public void OnTriggerExit2D(Collider2D col)
     {
        
