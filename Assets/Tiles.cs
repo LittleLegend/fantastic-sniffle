@@ -76,7 +76,7 @@ public class Tiles : MonoBehaviour
                 }
                 break;
 
-            case TileTypes.DeepA:
+            case TileTypes.DeepA_0:
                 if (Values.deepCount > 0)
                 {
                     Values.deepCount -= 1;

@@ -201,32 +201,6 @@ public Vector2 findClosestPrey() {
         return preyPosition;
 }
 
-public bool[,] getCollisionMapTurtle(TileTypes[,] tileMap)
-{
-        bool[,] collisionMap = new bool[tileMap.GetLength(0), tileMap.GetLength(1)];
-
-        for (int y = 0; y < tileMap.GetLength(0); y++) {
-                for (int x = 0; x< tileMap.GetLength(1); x++) {
-                        switch (tileMap[y,x]) {
-                        case (TileTypes.DeepA):
-                        case (TileTypes.DeepB_0):
-                        case (TileTypes.DeepB_90):
-                        case (TileTypes.DeepB_180):
-                        case (TileTypes.DeepB_270):
-                        case (TileTypes.Thorntendrils):
-                        case (TileTypes.Stonewall):
-                                collisionMap [y, x] = false;
-                                break;
-                        default:
-                                collisionMap [y, x] = true;
-                                break;
-                        }
-                }
-        }
-
-        return collisionMap;
-}
-
 public bool[,] getCollisionMap(TileTypes[,] tileMap)
 {
         bool[,] collisionMap = new bool[tileMap.GetLength(0), tileMap.GetLength(1)];
@@ -234,11 +208,16 @@ public bool[,] getCollisionMap(TileTypes[,] tileMap)
         for (int x = 0; x < tileMap.GetLength(0); x++) {
                 for (int y = 0; y< tileMap.GetLength(1); y++) {
                         switch (tileMap[x,y]) {
-                        case (TileTypes.DeepA):
+                        case (TileTypes.DeepA_0):
+                        case (TileTypes.DeepA_90):
                         case (TileTypes.DeepB_0):
                         case (TileTypes.DeepB_90):
                         case (TileTypes.DeepB_180):
                         case (TileTypes.DeepB_270):
+                        case (TileTypes.DeepC_0):
+                        case (TileTypes.DeepC_90):
+                        case (TileTypes.DeepC_180):
+                        case (TileTypes.DeepC_270):
                         case (TileTypes.Thorntendrils):
                         case (TileTypes.Water):
                                 collisionMap [x, y] = false;

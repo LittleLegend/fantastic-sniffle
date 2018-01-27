@@ -6,12 +6,15 @@ const number2Enum = {
   3: "TileTypes.DeepB_180",
   4: "TileTypes.Stonewall",
   5: "TileTypes.Water",
-  6: "TileTypes.DeepA",
+  6: "TileTypes.DeepA_0",
   7: "TileTypes.DeepB_0",
   8: "TileTypes.DeepB_270",
   9: "TileTypes.Thorntendrils",
   10: "TileTypes.Background",
-  11: "TileTypes.DeepC_0"
+  11: "TileTypes.DeepC_0",
+  12: "TileTypes.DeepC_270",
+  13: "TileTypes.DeepA_90",
+  14: "TileTypes.DeepC_90"
 };
 
 const tiledmap = require("../Assets/TilemapJSON.json");
