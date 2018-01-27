@@ -274,30 +274,5 @@ public bool[,] getCollisionMapCat(TileTypes[,] tileMap)
 }
 
 
-public bool[,] getCollisionMapBird(TileTypes[,] tileMap)
-{
-        bool[,] collisionMap = new bool[tileMap.GetLength(0), tileMap.GetLength(1)];
-
-        for (int x = 0; x < tileMap.GetLength(0); x++) {
-                for (int y = 0; y< tileMap.GetLength(1); y++) {
-                        switch (tileMap[x,y]) {
-                        case (TileTypes.DeepA):
-                        case (TileTypes.DeepB_0):
-                        case (TileTypes.DeepB_90):
-                        case (TileTypes.DeepB_180):
-                        case (TileTypes.DeepB_270):
-                        case (TileTypes.Thorntendrils):
-                        case (TileTypes.Water):
-                                collisionMap [x, y] = false;
-                                break;
-                        default:
-                                collisionMap [x, y] = true;
-                                break;
-                        }
-                }
-        }
-
-        return collisionMap;
-}
 
 }

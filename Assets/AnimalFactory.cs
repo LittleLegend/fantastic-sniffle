@@ -15,7 +15,7 @@ public List<GameObject> Turtles;
 public List<GameObject> Cats;
 public List<GameObject> Birds;
 
-// Use this for initialization
+// Use this for initializ ation
 void Start () {
 								StartCoroutine(createRandomAnimals());
 }
@@ -26,16 +26,17 @@ void Update () {
 }
 
 public void addAnimal(AnimalType animal, Vector2 position) {
+								Vector2 gameFieldPosition = new Vector2(position.x, -1 * position.y);
 
 								switch (animal) {
 								case (AnimalType.Cat):
-																Cats.Add(Instantiate (Cat, position, Quaternion.identity));
+																Cats.Add(Instantiate (Cat, gameFieldPosition, Quaternion.identity));
 																break;
 								case (AnimalType.Bird):
-																Birds.Add(Instantiate (Bird, position, Quaternion.identity));
+																Birds.Add(Instantiate (Bird, gameFieldPosition, Quaternion.identity));
 																break;
 								case (AnimalType.Turtle):
-																Turtles.Add(Instantiate (Turtle, position, Quaternion.identity));
+																Turtles.Add(Instantiate (Turtle, gameFieldPosition, Quaternion.identity));
 																break;
 
 								default:
@@ -44,12 +45,28 @@ public void addAnimal(AnimalType animal, Vector2 position) {
 }
 
 public IEnumerator createRandomAnimals () {
-								AnimalType rand = (AnimalType) Random.Range(0, 2);
-								// Vector2 position  = new Vector2((int) Random.Range())
-
 								while (true) {
-																yield return new WaitForSeconds(5);
-																addAnimal(rand, new Vector2(0,0));
+																yield return new WaitForSeconds(1);
+
+																AnimalType rand = (AnimalType) Random.Range(0, 3);
+																Vector2 position;
+
+																switch (rand) {
+																case (AnimalType.Cat):
+																								position= new Vector2(4, 3);
+																								break;
+																case (AnimalType.Turtle):
+																								position = new Vector2(0,0);
+																								break;
+																case (AnimalType.Bird):
+																								position = new Vector2(9,0);
+																								break;
+																default:
+																								position = new Vector2(9,0);
+																								break;
+																}
+
+																addAnimal(rand, position);
 								}
 }
 

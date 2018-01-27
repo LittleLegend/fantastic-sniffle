@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turtle : MonoBehaviour {
+public class Cat : MonoBehaviour {
 public bool isRoaming=false;
 public int roamingDistance;
 public int speed;
@@ -50,7 +50,7 @@ public Direction getDirection(PathFind.Point from, PathFind.Point to) {
 
 public IEnumerator roaming()
 {
-        bool[,] collisionMap = getCollisionMapTurtle (Level1.tilemap);
+        bool[,] collisionMap = getCollisionMap (Level1.tilemap);
 
         int width = collisionMap.GetLength(0);
         int height = collisionMap.GetLength (1);
@@ -58,7 +58,6 @@ public IEnumerator roaming()
         PathFind.Point from = new PathFind.Point(Mathf.RoundToInt(gameObject.transform.position.x),  Mathf.RoundToInt(gameObject.transform.position.y) * -1);
 
         PathFind.Point to = new PathFind.Point(4, 5);
-
 
         List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
 
@@ -144,40 +143,40 @@ public IEnumerator randomizeRoaming(int percent, int seconds)
                 }
 
         }
-
 }
 
-public bool[,] getCollisionMapTurtle(TileTypes[,] tileMap)
+public bool[,] getCollisionMap(TileTypes[,] tileMap)
 {
         bool[,] collisionMap = new bool[tileMap.GetLength(0), tileMap.GetLength(1)];
 
-        for (int y = 0; y < tileMap.GetLength(0); y++) {
-                for (int x = 0; x< tileMap.GetLength(1); x++) {
-                        switch (tileMap[y,x]) {
+        for (int x = 0; x < tileMap.GetLength(0); x++) {
+                for (int y = 0; y< tileMap.GetLength(1); y++) {
+                        switch (tileMap[x,y]) {
                         case (TileTypes.DeepA):
                         case (TileTypes.DeepB_0):
                         case (TileTypes.DeepB_90):
                         case (TileTypes.DeepB_180):
                         case (TileTypes.DeepB_270):
-                        case (TileTypes.Thorntendrils):
                         case (TileTypes.Stonewall):
-                                collisionMap [y, x] = false;
+                        case (TileTypes.Water):
+                                collisionMap [x, y] = false;
                                 break;
                         default:
-                                collisionMap [y, x] = true;
+                                collisionMap [x, y] = true;
                                 break;
                         }
                 }
-        }
-
-        foreach (var tile in tileFactory.thorntendrils) {
-                collisionMap[Mathf.RoundToInt (tile.transform.position.x),Mathf.RoundToInt (tile.transform.position.y) * -1] = false;
         }
 
         foreach (var tile in tileFactory.stonewalls) {
                 collisionMap[Mathf.RoundToInt (tile.transform.position.x),Mathf.RoundToInt (tile.transform.position.y) * -1] = false;
         }
 
+        foreach (var tile in tileFactory.water) {
+                collisionMap[Mathf.RoundToInt (tile.transform.position.x),Mathf.RoundToInt (tile.transform.position.y) * -1] = false;
+        }
+
         return collisionMap;
+
 }
 }
