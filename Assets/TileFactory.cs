@@ -20,12 +20,15 @@ public GameObject DeepA;
 public GameObject DeepB;
 public GameObject DeepC;
 
-public List<GameObject> tiles;
+public List<GameObject> stonewalls;
+public List<GameObject> water;
+public List<GameObject> deep;
+public List<GameObject> thorntendrils;
 
 
 
-// Use this for initialization
-void Start () {
+    // Use this for initialization
+    void Start () {
         createsTiles();
 }
 
@@ -35,24 +38,33 @@ void Update () {
 }
 
 public void addTile(TileTypes tile, Vector2 position) {
-      
 
+        GameObject AddedTile;
 
-        switch(tile)
-        {
-            case TileTypes.Stonewall: tiles.Add(Instantiate(Stonewall, position, Quaternion.identity));
+        switch (tile)
+        {   
+            case TileTypes.Stonewall:
+                 AddedTile = Instantiate(Stonewall, position, Quaternion.identity);
+                stonewalls.Add(AddedTile);
+                
                 break;
 
             case TileTypes.Water:
-                tiles.Add(Instantiate(Water, position, Quaternion.identity));
+                 AddedTile = Instantiate(Water, position, Quaternion.identity);
+                water.Add(AddedTile);
+                
                 break;
 
             case TileTypes.Thorntendrils:
-                tiles.Add(Instantiate(Thorntendrils, position, Quaternion.identity));
+                 AddedTile = Instantiate(Thorntendrils, position, Quaternion.identity);
+                thorntendrils.Add(AddedTile);
+                
                 break;
 
             case TileTypes.DeepA:
-                tiles.Add(Instantiate(DeepA, position, Quaternion.identity));
+                 AddedTile = Instantiate(DeepA, position, Quaternion.identity);
+                deep.Add(AddedTile);
+                
                 break;
 
 
@@ -60,9 +72,38 @@ public void addTile(TileTypes tile, Vector2 position) {
         
 }
 
-    public void destroyTile(GameObject ClickedTile)
+    public void destroyTile(GameObject ClickedTile, TileTypes type)
     {
-        tiles.Remove(ClickedTile);
+        switch (type)
+        {
+            case TileTypes.Stonewall:
+                stonewalls.Remove(ClickedTile);
+
+                break;
+
+            case TileTypes.Water:
+                water.Remove(ClickedTile);
+
+                break;
+
+            case TileTypes.Thorntendrils:
+                thorntendrils.Remove(ClickedTile);
+
+                break;
+
+            case TileTypes.DeepA:
+                deep.Remove(ClickedTile);
+
+                break;
+
+
+        }
+
+        
+
+
+
+
         Destroy(ClickedTile);
         
     }
@@ -83,43 +124,45 @@ public void addTile(TileTypes tile, Vector2 position) {
                                 break;
                         case (TileTypes.Stonewall):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (Stonewall, new Vector2 (x, -y), Quaternion.identity);
+                                stonewalls.Add(Instantiate(Stonewall, new Vector2(x, -y), Quaternion.identity));
+                        
                                 break;
                         case (TileTypes.Water):
                                 Debug.Log ("create Background at " + x + ", " + y);
                                 Instantiate (Water, new Vector2 (x, -y), Quaternion.identity);
+                                water.Add(Instantiate(Water, new Vector2(x, -y), Quaternion.identity));
                                 break;
                         case (TileTypes.Thorntendrils):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (Thorntendrils, new Vector2 (x, -y), Quaternion.identity);
+                                thorntendrils.Add(Instantiate(Thorntendrils, new Vector2(x, -y), Quaternion.identity));
                                 break;
                         case (TileTypes.DeepA):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (DeepA, new Vector2 (x, -y), Quaternion.identity);
+                                deep.Add(Instantiate (DeepA, new Vector2 (x, -y), Quaternion.identity));
                                 break;
                         case (TileTypes.DeepB_0):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(0, Vector3.forward));
+                                deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(0, Vector3.forward)));
                                 break;
                         case (TileTypes.DeepB_90):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(270, Vector3.forward));
+                                deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(270, Vector3.forward)));
                                 break;
                         case (TileTypes.DeepB_180):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(180, Vector3.forward));
+                                deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(180, Vector3.forward)));
                                 break;
                         case (TileTypes.DeepB_270):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(90, Vector3.forward));
+                                deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(90, Vector3.forward)));
                                 break;
                         case (TileTypes.DeepC_0):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.identity);
+                                deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.identity));
                                 break;
                         case (TileTypes.DeepC_180):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (DeepC, new Vector2 (x, -y), Quaternion.AngleAxis(180, Vector3.forward));
+                                deep.Add(Instantiate (DeepC, new Vector2 (x, -y), Quaternion.AngleAxis(180, Vector3.forward)));
                                 break;
                         default:
                                 break;
