@@ -7,7 +7,7 @@ public class Tiles : MonoBehaviour
 
     public InputController InputController;
     public TileFactory tileFactory;
-    public  TileTypes myType;
+    
 
 
     // Use this for initialization
@@ -30,7 +30,7 @@ public class Tiles : MonoBehaviour
         {
 
             tileFactory.addTile(InputController.GetComponent<InputController>().currentMode, gameObject.transform.position);
-            tileFactory.destroyTile(gameObject);
+            tileFactory.destroyTile(gameObject, InputController.GetComponent<InputController>().currentMode);
         }
     }
 
