@@ -1394,14 +1394,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4153879622ad44e4ab92c771b9657ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stonewallCount: 10
-  waterCount: 10
-  thorntendrilsCount: 10
-  deepCount: 10
+  stonewallCount: 100
+  waterCount: 100
+  thorntendrilsCount: 100
   stonewallLabel: {fileID: 144703609}
   waterLabel: {fileID: 1625860196}
   thorntendrilsLabel: {fileID: 1410435250}
-  deepLabel: {fileID: 0}
 --- !u!4 &1705302661
 Transform:
   m_ObjectHideFlags: 0
@@ -1450,7 +1448,7 @@ MonoBehaviour:
     type: 2}
   DeepA: {fileID: 1576868529369982, guid: d2c797ca5c2bfd24c8886e2d9f54c574, type: 2}
   DeepB: {fileID: 1950751453944704, guid: e9148c91487692b42a7e92026d40407f, type: 2}
-  DeepC: {fileID: 1740968660443140, guid: dec09f3e730e57e48bd3a77a46e80e2d, type: 2}
+  DeepC: {fileID: 1588998609103166, guid: dec09f3e730e57e48bd3a77a46e80e2d, type: 2}
   stonewalls: []
   water: []
   deep: []

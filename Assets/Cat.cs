@@ -209,4 +209,27 @@ public bool[,] getCollisionMap(TileTypes[,] tileMap)
         return collisionMap;
 
 }
+
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Tile")
+        {
+            col.gameObject.GetComponent<Tiles>().hasAnimal = true;
+
+           
+
+        }
+
+    }
+    public void OnTriggerExit2D(Collider2D col)
+    {
+
+
+        if (col.gameObject.tag == "Tile")
+        {
+            col.gameObject.GetComponent<Tiles>().hasAnimal = false;
+
+            
+        }
+    }
 }
