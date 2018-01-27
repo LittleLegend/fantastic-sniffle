@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum TileTypes {Background, Stonewall, Water, Thorntendrils, Deep1, Deep1_180, Deep2, Deep3};
+enum TileTypes {Background, Stonewall, Water, Thorntendrils,
+                DeepA, DeepB_0, DeepB_90, DeepB_180, DeepB_270,
+                DeepC_0, DeepC_180  };
 
 public class TileFactory : MonoBehaviour {
 
@@ -17,13 +19,15 @@ public GameObject Thorntendrils;
 public GameObject DeepA;
 public GameObject DeepB;
 public GameObject DeepC;
-    
-TileTypes[,] tilemap = new TileTypes[,] {
-        {TileTypes.Background, TileTypes.Background , TileTypes.Background },
-        { TileTypes.Water, TileTypes.Background, TileTypes.Water },
-        { TileTypes.Background, TileTypes.Background, TileTypes.Background }
-};
 
+TileTypes[,] tilemap = new TileTypes[,] {
+        {TileTypes.DeepC_0, TileTypes.DeepA, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.Water, TileTypes.DeepC_0, TileTypes.DeepC_0},
+        {TileTypes.DeepC_0, TileTypes.DeepA, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepB_180, TileTypes.Stonewall, TileTypes.DeepC_0, TileTypes.Water, TileTypes.Water, TileTypes.Water},
+        {TileTypes.DeepC_0, TileTypes.DeepA, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepB_270, TileTypes.Thorntendrils, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0},
+        {TileTypes.DeepC_0, TileTypes.DeepA, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepB_180, TileTypes.Stonewall, TileTypes.DeepC_0},
+        {TileTypes.DeepC_0, TileTypes.DeepA, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.Background, TileTypes.Background, TileTypes.DeepC_0, TileTypes.DeepB_270, TileTypes.Thorntendrils, TileTypes.DeepC_0},
+        {TileTypes.DeepC_0, TileTypes.DeepA, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0, TileTypes.DeepC_0}
+};
 // Use this for initialization
 void Start () {
         StartCoroutine(createsTiles());
@@ -57,21 +61,33 @@ public IEnumerator createsTiles()
                                 Debug.Log ("create Background at " + i + ", " + j);
                                 Instantiate (Thorntendrils, new Vector2 (-i, -j), Quaternion.identity);
                                 break;
-                        case (TileTypes.Deep1):
+                        case (TileTypes.DeepA):
                                 Debug.Log ("create Background at " + i + ", " + j);
                                 Instantiate (DeepA, new Vector2 (-i, -j), Quaternion.identity);
                                 break;
-                        case (TileTypes.Deep1_180):
+                        case (TileTypes.DeepB_0):
                                 Debug.Log ("create Background at " + i + ", " + j);
-					Instantiate (DeepA, new Vector2 (-i, -j), Quaternion.AngleAxis(180, Vector3.up));
+                                Instantiate (DeepB, new Vector2 (-i, -j), Quaternion.AngleAxis(0, Vector3.up));
                                 break;
-                        case (TileTypes.Deep2):
+                        case (TileTypes.DeepB_90):
+                                Debug.Log ("create Background at " + i + ", " + j);
+                                Instantiate (DeepB, new Vector2 (-i, -j), Quaternion.AngleAxis(90, Vector3.up));
+                                break;
+                        case (TileTypes.DeepB_180):
+                                Debug.Log ("create Background at " + i + ", " + j);
+                                Instantiate (DeepB, new Vector2 (-i, -j), Quaternion.AngleAxis(180, Vector3.up));
+                                break;
+                        case (TileTypes.DeepB_270):
+                                Debug.Log ("create Background at " + i + ", " + j);
+                                Instantiate (DeepB, new Vector2 (-i, -j), Quaternion.AngleAxis(270, Vector3.up));
+                                break;
+                        case (TileTypes.DeepC_0):
                                 Debug.Log ("create Background at " + i + ", " + j);
                                 Instantiate (DeepB, new Vector2 (-i, -j), Quaternion.identity);
                                 break;
-                        case (TileTypes.Deep3):
+                        case (TileTypes.DeepC_180):
                                 Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (DeepC, new Vector2 (-i, -j), Quaternion.identity);
+                                Instantiate (DeepC, new Vector2 (-i, -j), Quaternion.AngleAxis(180, Vector3.up));
                                 break;
                         default:
                                 break;
