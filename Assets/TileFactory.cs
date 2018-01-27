@@ -35,10 +35,38 @@ void Update () {
 }
 
 public void addTile(TileTypes tile, Vector2 position) {
-        tiles.Add(Instantiate (Stonewall, position, Quaternion.identity));
+      
+        switch(tile)
+        {
+            case TileTypes.Stonewall: tiles.Add(Instantiate(Stonewall, position, Quaternion.identity));
+                break;
+
+            case TileTypes.Water:
+                tiles.Add(Instantiate(Water, position, Quaternion.identity));
+                break;
+
+            case TileTypes.Thorntendrils:
+                tiles.Add(Instantiate(Thorntendrils, position, Quaternion.identity));
+                break;
+
+            case TileTypes.DeepA:
+                tiles.Add(Instantiate(DeepA, position, Quaternion.identity));
+                break;
+
+
+        }
+        
 }
 
-public void createsTiles() {
+    public void destroyTile(GameObject ClickedTile)
+    {
+        tiles.Remove(ClickedTile);
+        Destroy(ClickedTile);
+        
+    }
+
+
+    public void createsTiles() {
         int width = Level1.tilemap.GetLength(0);
         int height = Level1.tilemap.GetLength(1);
 

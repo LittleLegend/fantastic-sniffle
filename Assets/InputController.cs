@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
-public enum Modes { Stonewall, Thorntendrils, Deep, Water };
-public Modes currenMode;
+
+public TileTypes currentMode;
 public Tiles currentTile;
-public TileFactory tileFactory;
+
 
 // Use this for initialization
 void Start () {
-
+        currentMode = TileTypes.Stonewall;
 }
 
 // Update is called once per frame
@@ -19,31 +19,28 @@ void Update () {
 
 }
 
-public void OnMouseClick()
-{
-								tileFactory.addTile(TileTypes.Stonewall, new Vector2(Mathf.RoundToInt(Input.mousePosition.x), Mathf.RoundToInt(Input.mousePosition.y)));
-}
+
 
 
 
 public void SetModeStonewall()
 {
-								currenMode = Modes.Stonewall;
+								currentMode = TileTypes.Stonewall;
 }
 
 public void SetModeThorntendrils()
 {
-								currenMode = Modes.Thorntendrils;
+								currentMode = TileTypes.Thorntendrils;
 }
 
 public void SetModeDeep()
 {
-								currenMode = Modes.Deep;
+								currentMode = TileTypes.DeepA;
 }
 
 public void SetModeWater()
 {
-								currenMode = Modes.Water;
+								currentMode = TileTypes.Water;
 }
 
 }
