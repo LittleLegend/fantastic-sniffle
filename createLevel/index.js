@@ -17,7 +17,7 @@ const number2Enum = {
   14: "TileTypes.DeepC_90"
 };
 
-const tiledmap = require("../Assets/TilemapJSON.json");
+const tiledmap = require("../Assets/Level1.json");
 
 const map = [];
 
@@ -49,12 +49,37 @@ process._rawDebug(
   "\n"
 );
 
-console.log(`
+let catSpawnPoint;
+let birdSpawnPoint;
+let turtleSpawnPoint;
+
+tiledmap.layers[1].objects.forEach(o => {
+  if (o.name === "Bird") {
+    birdSpawnPoint = o;
+  } else if (o.name === "Cat") {
+    catSpawnPoint = o;
+  } else if (o.name === "Turtle") {
+    turtleSpawnPoint = o;
+  }
+});
+
+console.log(`using UnityEngine;
+  
 public class Level1 {
 static public TileTypes[,] tilemap = new TileTypes[,] {
   ${mapRotate
     .map(column => ` {${column.map(tile => number2Enum[tile]).join(", ")}} `)
     .join(",\n")}
 };
+
+static public Vector2 CatSpawnPoint = new Vector2(${Math.round(
+  catSpawnPoint.x / 128
+)}, ${-1 * Math.round(catSpawnPoint.y / 128)});
+static public Vector2 BirdSpawnPoint = new Vector2(${Math.round(
+  birdSpawnPoint.x / 128
+)}, ${-1 * Math.round(birdSpawnPoint.y / 128)});
+static public Vector2 TurtleSpawnPoint = new Vector2(${Math.round(
+  turtleSpawnPoint.x / 128
+)}, ${-1 * Math.round(turtleSpawnPoint.y / 128)});
 }
 `);
