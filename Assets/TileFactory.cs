@@ -25,6 +25,8 @@ public List<GameObject> water;
 public List<GameObject> deep;
 public List<GameObject> thorntendrils;
 
+private   GameObject AddedTile;
+
 
 
     // Use this for initialization
@@ -39,7 +41,10 @@ void Update () {
 
 public void addTile(TileTypes tile, Vector2 position) {
 
-        GameObject AddedTile;
+        
+        
+
+        
 
         switch (tile)
         {   
@@ -47,24 +52,32 @@ public void addTile(TileTypes tile, Vector2 position) {
                  AddedTile = Instantiate(Stonewall, position, Quaternion.identity);
                 stonewalls.Add(AddedTile);
                 
+                AddedTile.GetComponent<Tiles>().myType = TileTypes.Stonewall;
+
+
                 break;
 
             case TileTypes.Water:
                  AddedTile = Instantiate(Water, position, Quaternion.identity);
                 water.Add(AddedTile);
                 
+                AddedTile.GetComponent<Tiles>().myType = TileTypes.Water;
+
                 break;
 
             case TileTypes.Thorntendrils:
                  AddedTile = Instantiate(Thorntendrils, position, Quaternion.identity);
                 thorntendrils.Add(AddedTile);
                 
+                AddedTile.GetComponent<Tiles>().myType = TileTypes.Thorntendrils;
+
                 break;
 
             case TileTypes.DeepA:
                  AddedTile = Instantiate(DeepA, position, Quaternion.identity);
                 deep.Add(AddedTile);
                 
+                AddedTile.GetComponent<Tiles>().myType = TileTypes.DeepA;
                 break;
 
 
@@ -112,58 +125,83 @@ public void addTile(TileTypes tile, Vector2 position) {
     public void createsTiles() {
         int width = Level1.tilemap.GetLength(0);
         int height = Level1.tilemap.GetLength(1);
+        
 
-        for(int x=0; x < width; x++)
+        for (int x=0; x < width; x++)
         {
                 for(int y=0; y < height; y++)
                 {
-                        switch (Level1.tilemap[x,y]) {
+                
+                switch (Level1.tilemap[x,y]) {
+                    
+                    
                         case (TileTypes.Background):
+                        
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (Background, new Vector2 (x, -y), Quaternion.identity);
-                                break;
+                                GameObject AddedTile=Instantiate (Background, new Vector2 (x, -y), Quaternion.identity);
+                                AddedTile.GetComponent<Tiles>().myType = TileTypes.Background;
+                        break;
                         case (TileTypes.Stonewall):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                stonewalls.Add(Instantiate(Stonewall, new Vector2(x, -y), Quaternion.identity));
-                        
-                                break;
+                               AddedTile = Instantiate(Stonewall, new Vector2(x, -y), Quaternion.identity);
+                               stonewalls.Add(AddedTile);
+                               AddedTile.GetComponent<Tiles>().myType = TileTypes.Stonewall;
+
+                        break;
                         case (TileTypes.Water):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                Instantiate (Water, new Vector2 (x, -y), Quaternion.identity);
-                                water.Add(Instantiate(Water, new Vector2(x, -y), Quaternion.identity));
-                                break;
+                                AddedTile=Instantiate (Water, new Vector2 (x, -y), Quaternion.identity);
+                                water.Add(AddedTile);
+                                AddedTile.GetComponent<Tiles>().myType = TileTypes.Water;
+                        break;
                         case (TileTypes.Thorntendrils):
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                thorntendrils.Add(Instantiate(Thorntendrils, new Vector2(x, -y), Quaternion.identity));
-                                break;
+                        AddedTile = Instantiate(Thorntendrils, new Vector2(x, -y), Quaternion.identity);
+                        thorntendrils.Add(Instantiate(Thorntendrils, new Vector2(x, -y), Quaternion.identity));
+                        AddedTile.GetComponent<Tiles>().myType = TileTypes.Thorntendrils;
+                        break;
                         case (TileTypes.DeepA):
                                 Debug.Log ("create Background at " + x + ", " + y);
+                        AddedTile = Instantiate(DeepA, new Vector2(x, -y), Quaternion.identity);
                                 deep.Add(Instantiate (DeepA, new Vector2 (x, -y), Quaternion.identity));
-                                break;
+                        AddedTile.GetComponent<Tiles>().myType = TileTypes.DeepA;
+                        break;
                         case (TileTypes.DeepB_0):
                                 Debug.Log ("create Background at " + x + ", " + y);
+                        AddedTile= Instantiate(DeepB, new Vector2(x, -y), Quaternion.AngleAxis(0, Vector3.forward));
                                 deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(0, Vector3.forward)));
-                                break;
+                        AddedTile.GetComponent<Tiles>().myType = TileTypes.DeepA;
+                        break;
                         case (TileTypes.DeepB_90):
                                 Debug.Log ("create Background at " + x + ", " + y);
+                        AddedTile = Instantiate(DeepB, new Vector2(x, -y), Quaternion.AngleAxis(270, Vector3.forward));
                                 deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(270, Vector3.forward)));
-                                break;
+                        AddedTile.GetComponent<Tiles>().myType = TileTypes.DeepA;
+                        break;
                         case (TileTypes.DeepB_180):
                                 Debug.Log ("create Background at " + x + ", " + y);
+                        AddedTile = Instantiate(DeepB, new Vector2(x, -y), Quaternion.AngleAxis(180, Vector3.forward));
                                 deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(180, Vector3.forward)));
-                                break;
+                        AddedTile.GetComponent<Tiles>().myType = TileTypes.DeepA;
+                        break;
                         case (TileTypes.DeepB_270):
                                 Debug.Log ("create Background at " + x + ", " + y);
+                        AddedTile = Instantiate(DeepB, new Vector2(x, -y), Quaternion.AngleAxis(90, Vector3.forward));
                                 deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(90, Vector3.forward)));
-                                break;
+                        AddedTile.GetComponent<Tiles>().myType = TileTypes.DeepA;
+                        break;
                         case (TileTypes.DeepC_0):
                                 Debug.Log ("create Background at " + x + ", " + y);
+                        AddedTile = Instantiate(DeepB, new Vector2(x, -y), Quaternion.identity);
                                 deep.Add(Instantiate (DeepB, new Vector2 (x, -y), Quaternion.identity));
-                                break;
+                        AddedTile.GetComponent<Tiles>().myType = TileTypes.DeepA;
+                        break;
                         case (TileTypes.DeepC_180):
                                 Debug.Log ("create Background at " + x + ", " + y);
+                        AddedTile = Instantiate(DeepC, new Vector2(x, -y), Quaternion.AngleAxis(180, Vector3.forward));
                                 deep.Add(Instantiate (DeepC, new Vector2 (x, -y), Quaternion.AngleAxis(180, Vector3.forward)));
-                                break;
+                        AddedTile.GetComponent<Tiles>().myType = TileTypes.DeepA;
+                        break;
                         default:
                                 break;
                         }
