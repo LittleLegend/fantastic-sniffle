@@ -8,11 +8,13 @@ public int roamingDistance;
 public int speed;
 public bool alive;
 public TileFactory tileFactory;
+public AnimalFactory animalFactory;
 
 void Start () {
         alive = true;
         StartCoroutine(randomizeRoaming(50,1));
         tileFactory = GameObject.Find ("TileFactory").GetComponent<TileFactory>();
+        animalFactory = GameObject.Find ("AnimalFactory").GetComponent<AnimalFactory>();
 }
 
 void Update () {
@@ -51,13 +53,15 @@ public Direction getDirection(PathFind.Point from, PathFind.Point to) {
 public IEnumerator roaming()
 {
         bool[,] collisionMap = getCollisionMap (Level1.tilemap);
+        Vector2 preyPosition = findClosestPrey();
 
         int width = collisionMap.GetLength(0);
         int height = collisionMap.GetLength (1);
         PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
-        PathFind.Point from = new PathFind.Point(Mathf.RoundToInt(gameObject.transform.position.x),  Mathf.RoundToInt(gameObject.transform.position.y) * -1);
-
-        PathFind.Point to = new PathFind.Point(4, 5);
+        PathFind.Point from = new PathFind.Point(Mathf.RoundToInt(gameObject.transform.position.x),
+                                                 Mathf.RoundToInt(gameObject.transform.position.y) * -1);
+        PathFind.Point to = new PathFind.Point(Mathf.RoundToInt(preyPosition.x),
+                                               Mathf.RoundToInt(preyPosition.y) * -1);
 
         List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
 
@@ -141,8 +145,29 @@ public IEnumerator randomizeRoaming(int percent, int seconds)
                         StartCoroutine(roaming());
                         isRoaming = true;
                 }
+        }
+}
+
+public Vector2 findClosestPrey() {
+        Vector2 preyPosition = transform.position;
+        float distance = 100000;
+        float myX = transform.position.x;
+        float myY = transform.position.y;
+
+        foreach (var bird in animalFactory.Birds) {
+                float theirX = bird.transform.position.x;
+                float theirY = bird.transform.position.y;
+
+                float newDistance = Mathf.Abs(myX - theirX) + Mathf.Abs(myY - theirY);
+
+                if (newDistance < distance) {
+                        distance = newDistance;
+                        preyPosition = bird.transform.position;
+                }
 
         }
+
+        return preyPosition;
 }
 
 public bool[,] getCollisionMap(TileTypes[,] tileMap)
