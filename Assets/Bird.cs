@@ -50,7 +50,26 @@ public Direction getDirection(PathFind.Point from, PathFind.Point to) {
         }
 }
 
-public IEnumerator roaming()
+public void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag=="Tile" )
+        {
+            if (col.gameObject.GetComponent<Tiles>().myType == TileTypes.Stonewall)
+            {
+                gameObject.GetComponent<Animator>().SetBool("fly", true);
+                gameObject.GetComponent<SpriteRenderer>().sortingOrder=3;
+            }
+            else
+            {
+                gameObject.GetComponent<Animator>().SetBool("fly", false);
+            }
+        }
+
+    }
+
+  
+
+    public IEnumerator roaming()
 {
         bool[,] collisionMap = getCollisionMap (Level1.tilemap);
         Vector2 preyPosition = findClosestPrey();
