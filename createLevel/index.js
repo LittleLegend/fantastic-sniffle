@@ -1,4 +1,4 @@
-// const {} from 'lodash'
+const { cloneDeep } = require("lodash");
 
 const number2Enum = {
   1: "TileTypes.DeepC_180",
@@ -22,16 +22,36 @@ for (var y = 0; y < tiledmap.height; y++) {
   map.push(tiledmap.layers[0].data.splice(0, tiledmap.width));
 }
 
+const mapRotate = [];
+
+map.forEach((line, x) => {
+  line.forEach((tile, y) => {
+    if (!mapRotate[y]) {
+      mapRotate[y] = [];
+    }
+
+    mapRotate[y][x] = tile;
+  });
+});
+
 process._rawDebug(
   "map",
   require("util").inspect(map, { depth: null, colors: true }),
   "\n"
 );
 
+process._rawDebug(
+  "mapRotate",
+  require("util").inspect(mapRotate, { depth: null, colors: true }),
+  "\n"
+);
+
 console.log(`
-TileTypes[,] tilemap = new TileTypes[,] {
-  ${map
-    .map(line => ` {${line.map(tile => number2Enum[tile]).join(", ")}} `)
+public class Level1 {
+static public TileTypes[,] tilemap = new TileTypes[,] {
+  ${mapRotate
+    .map(column => ` {${column.map(tile => number2Enum[tile]).join(", ")}} `)
     .join(",\n")}
 };
+}
 `);
