@@ -63,7 +63,7 @@ public IEnumerator createsTiles()
                                 break;
                         case (TileTypes.Deep1_180):
                                 Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (Tile, new Vector2 (-i, -j), Quaternion.AngleAxis(180, Vector3.up));
+					Instantiate (DeepA, new Vector2 (-i, -j), Quaternion.AngleAxis(180, Vector3.up));
                                 break;
                         case (TileTypes.Deep2):
                                 Debug.Log ("create Background at " + i + ", " + j);
