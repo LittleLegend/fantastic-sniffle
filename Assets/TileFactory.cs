@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public enum TileTypes {Background,
                        Stonewall, Water, Thorntendrils,
@@ -48,7 +49,7 @@ public void createsTiles() {
                                 break;
                         case (TileTypes.Water):
                                 Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (Water, new Vector2 (j, -i), Quaternion.identity);
+                                Instantiate(Water, new Vector2 (j, -i), Quaternion.identity);
                                 break;
                         case (TileTypes.Thorntendrils):
                                 Debug.Log ("create Background at " + i + ", " + j);
