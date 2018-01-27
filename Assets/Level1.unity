@@ -1449,9 +1449,12 @@ MonoBehaviour:
   DeepA: {fileID: 1576868529369982, guid: d2c797ca5c2bfd24c8886e2d9f54c574, type: 2}
   DeepB: {fileID: 1950751453944704, guid: e9148c91487692b42a7e92026d40407f, type: 2}
   DeepC: {fileID: 1588998609103166, guid: dec09f3e730e57e48bd3a77a46e80e2d, type: 2}
-  Bird_Spawn: {fileID: 0}
-  CatSpawn: {fileID: 0}
-  TurtleSpawn: {fileID: 0}
+
+  Bird_Spawn: {fileID: 1416774973185838, guid: 140208380beb09e4392de07c7c7e8626, type: 2}
+  CatSpawn: {fileID: 1381030412729032, guid: 52f3b30c5f5a9d5489444b83bb05d68a, type: 2}
+  TurtleSpawn: {fileID: 1069130324893838, guid: 8f1a5709986bffd42894d60670b0fc93,
+    type: 2}
+
   stonewalls: []
   water: []
   deep: []
