@@ -28,10 +28,7 @@ public class Turtle : MonoBehaviour {
         Debug.Log(rand);
         if (rand == 0)
         {
-            if (gameObject.transform.localScale.x == 1)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.9f, gameObject.transform.position.y);
-            }
+            
 
             gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
            
@@ -40,10 +37,7 @@ public class Turtle : MonoBehaviour {
 
         if (rand == 1)
         {
-            if (gameObject.transform.localScale.x == 1)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.9f, gameObject.transform.position.y);
-            }
+          
 
             gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
 
@@ -52,10 +46,7 @@ public class Turtle : MonoBehaviour {
 
         if (rand == 2)
         {
-            if (gameObject.transform.localScale.x == 1)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.9f, gameObject.transform.position.y);
-            }
+            
 
             gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
 
@@ -66,10 +57,6 @@ public class Turtle : MonoBehaviour {
         {
 
 
-            if (gameObject.transform.localScale.x == -1)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x - 0.9f, gameObject.transform.position.y);
-            }
             gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
 
             Point = new Vector3(transform.position.x , transform.position.y - roamingDistance , 0);
@@ -77,52 +64,35 @@ public class Turtle : MonoBehaviour {
 
         if (rand == 4)
         {
-            if (gameObject.transform.localScale.x == 1)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.9f, gameObject.transform.position.y);
-            }
-
+            
             gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
 
-            Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
+            Point = new Vector3(transform.position.x + roamingDistance, transform.position.y + roamingDistance, 0);
         }
 
         if (rand == 5)
         {
 
-
-            if (gameObject.transform.localScale.x == -1)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x - 0.9f, gameObject.transform.position.y);
-            }
             gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
 
-            Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
+            Point = new Vector3(transform.position.x - roamingDistance, transform.position.y + roamingDistance, 0);
         }
 
         if (rand == 6)
         {
-            if (gameObject.transform.localScale.x == 1)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.9f, gameObject.transform.position.y);
-            }
+            
 
             gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
 
-            Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
+            Point = new Vector3(transform.position.x - roamingDistance, transform.position.y - roamingDistance, 0);
         }
 
         if (rand == 7)
         {
 
-
-            if (gameObject.transform.localScale.x == -1)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x - 0.9f, gameObject.transform.position.y);
-            }
             gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
 
-            Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
+            Point = new Vector3(transform.position.x + roamingDistance, transform.position.y - roamingDistance, 0);
         }
 
 
