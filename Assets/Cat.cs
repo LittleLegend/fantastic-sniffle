@@ -11,10 +11,12 @@ public bool ishunting=false;
 public bool hashunted = false;
 public TileFactory tileFactory;
 public AnimalFactory animalFactory;
+public StateManager StateManager;
 
-void Start () {
+    void Start () {
         alive = true;
         tileFactory = GameObject.Find ("TileFactory").GetComponent<TileFactory>();
+        StateManager = GameObject.Find("StateManager").GetComponent<StateManager>();
         animalFactory = GameObject.Find ("AnimalFactory").GetComponent<AnimalFactory>();
         StartCoroutine(randomizeRoaming());
 }
@@ -228,7 +230,11 @@ public bool[,] getCollisionMap(TileTypes[,] tileMap)
 
         if (col.gameObject.tag == "Bird")
         {
-            Debug.Log("You Died");
+            if (!StateManager.death.isPlaying)
+            {
+                StateManager.death.Play();
+            }
+            StateManager.theme.Stop();
         }
 
     }

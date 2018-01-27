@@ -11,10 +11,14 @@ public TileFactory tileFactory;
 public AnimalFactory animalFactory;
 public  bool ishunting = false;
 public bool hashunted = false;
+public StateManager StateManager;
+   
+
 
     void Start () {
         alive = true;
         tileFactory = GameObject.Find ("TileFactory").GetComponent<TileFactory>();
+        StateManager = GameObject.Find("StateManager").GetComponent<StateManager>();
         animalFactory = GameObject.Find ("AnimalFactory").GetComponent<AnimalFactory>();
         StartCoroutine(randomizeRoaming());
 }
@@ -71,7 +75,12 @@ public void OnTriggerEnter2D(Collider2D col)
 
         if (col.gameObject.tag == "Turtle")
         {
-            Debug.Log("You Died");
+            if (!StateManager.death.isPlaying)
+            {
+                StateManager.death.Play();
+            }
+
+            StateManager.theme.Stop();
         }
 
         }

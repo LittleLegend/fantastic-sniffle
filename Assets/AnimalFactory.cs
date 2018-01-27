@@ -14,6 +14,7 @@ public GameObject Bird;
 public List<GameObject> Turtles;
 public List<GameObject> Cats;
 public List<GameObject> Birds;
+public GameObject StateManager;
 
 // Use this for initializ ation
 void Start () {

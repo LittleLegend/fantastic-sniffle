@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class StateManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    public AudioSource theme;
+    public AudioSource death;
+
+    // Use this for initialization
+    void Start () {
+        theme.Play();
+      
 	}
 	
 	// Update is called once per frame
