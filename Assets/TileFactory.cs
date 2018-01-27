@@ -12,6 +12,7 @@ public class TileFactory : MonoBehaviour {
 public int tilecount;
 float width;
 float length;
+
 public GameObject Background;
 public GameObject Stonewall;
 public GameObject Water;
@@ -19,6 +20,10 @@ public GameObject Thorntendrils;
 public GameObject DeepA;
 public GameObject DeepB;
 public GameObject DeepC;
+
+public GameObject Bird_Spawn;
+public GameObject CatSpawn;
+public GameObject TurtleSpawn;
 
 public List<GameObject> stonewalls;
 public List<GameObject> water;
@@ -94,6 +99,10 @@ public void destroyTile(GameObject ClickedTile, TileTypes type)
 public void createsTiles() {
         int width = Level1.tilemap.GetLength(0);
         int height = Level1.tilemap.GetLength(1);
+        
+        Instantiate (Bird_Spawn, Level1.BirdSpawnPoint, Quaternion.identity);
+        Instantiate (CatSpawn, Level1.CatSpawnPoint, Quaternion.identity);
+        Instantiate (TurtleSpawn, Level1.TurtleSpawnPoint, Quaternion.identity);
 
         for (int x=0; x < width; x++)
         {
