@@ -20,6 +20,8 @@ public GameObject DeepA;
 public GameObject DeepB;
 public GameObject DeepC;
 
+public List<GameObject> tiles;
+
 
 
 // Use this for initialization
@@ -30,6 +32,10 @@ void Start () {
 // Update is called once per frame
 void Update () {
 
+}
+
+public void addTile(TileTypes tile, Vector2 position) {
+        tiles.Add(Instantiate (Stonewall, position, Quaternion.identity));
 }
 
 public void createsTiles() {
@@ -100,30 +106,30 @@ public void createsTiles() {
         // };
 
         // bool[,] collisionMap = getCollisionMapCat(Level1.tilemap);
-        // 
+        //
         // for (int x = 0; x < collisionMap.GetLength(0); x++) {
         //         for (int y = 0; y< collisionMap.GetLength(1); y++) {
         //                 Debug.Log(x+", "+y+": "+collisionMap[x,y]);
         //         }
         // }
-        // 
+        //
         // // set values here....
         // // every float in the array represent the cost of passing the tile at that position.
         // // use 0.0f for blocking tiles.
-        // 
+        //
         // // create a grid
         // int width = collisionMap.GetLength(0);
         // int height = collisionMap.GetLength (1);
         // PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
-        // 
+        //
         // // create source and target points
         // PathFind.Point _from = new PathFind.Point(0, 6);
         // PathFind.Point _to = new PathFind.Point(2, 9);
-        // 
+        //
         // // get path
         // // path will either be a list of Points (x, y), or an empty list if no path is found.
         // List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to);
-        // 
+        //
         // foreach (var point in path) {
         //         Debug.Log (point.x + ", "+ point.y);
         // }

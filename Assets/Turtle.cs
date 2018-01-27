@@ -7,6 +7,7 @@ public bool isRoaming=false;
 public int roamingDistance;
 public int speed;
 public bool alive;
+public TileFactory tileFactory;
 
 void Start () {
         alive = true;
@@ -63,7 +64,7 @@ public IEnumerator roaming()
         PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
         PathFind.Point from = new PathFind.Point(Mathf.RoundToInt(gameObject.transform.position.x),  Mathf.RoundToInt(gameObject.transform.position.y) * -1);
 
-        PathFind.Point to = new PathFind.Point(9, 4);
+        PathFind.Point to = new PathFind.Point(4, 5);
 
         Debug.Log("length x " + Level1.tilemap.GetLength(0));
         Debug.Log("length y " + Level1.tilemap.GetLength(1));
@@ -92,19 +93,19 @@ public IEnumerator roaming()
 
                 if (rand == Direction.UP)
                 {
-                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                        // gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
                         Point = new Vector3(transform.position.x, transform.position.y+ roamingDistance, 0);
                 }
 
                 if (rand == Direction.LEFT)
                 {
-                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
                         Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
                 }
 
                 if (rand == Direction.DOWN)
                 {
-                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+                        // gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
                         Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
                 }
 
@@ -122,13 +123,13 @@ public IEnumerator roaming()
 
                 if (rand == Direction.DOWN_LEFT)
                 {
-                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
                         Point = new Vector3(transform.position.x - roamingDistance, transform.position.y - roamingDistance, 0);
                 }
 
                 if (rand == Direction.DOWN_RIGHT)
                 {
-                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
                         Point = new Vector3(transform.position.x + roamingDistance, transform.position.y - roamingDistance, 0);
                 }
 
