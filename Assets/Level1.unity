@@ -271,48 +271,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &872926752
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4125628076401448, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125628076401448, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125628076401448, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125628076401448, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125628076401448, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125628076401448, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125628076401448, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125628076401448, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6ac003502569e714fb57610189138c0d, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &894307719
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,7 +379,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b53afc7744cfd9488069dd8638d4225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tiles: []
+  tilecount: 0
+  Background: {fileID: 1332917126469760, guid: a47a71d39278d72498e6ba460fdc5a92, type: 2}
+  Stonewall: {fileID: 1280854146967906, guid: c681859488c7061449aba5c5117cca64, type: 2}
+  Water: {fileID: 1278411377102886, guid: 137026fe5f165244ab1a92eb43f20085, type: 2}
+  Thorntendrils: {fileID: 1907332059536254, guid: fcb806a4fdcc75c4ba0700517b9f3541,
+    type: 2}
+  DeepA: {fileID: 1576868529369982, guid: d2c797ca5c2bfd24c8886e2d9f54c574, type: 2}
+  DeepB: {fileID: 1950751453944704, guid: e9148c91487692b42a7e92026d40407f, type: 2}
+  DeepC: {fileID: 1740968660443140, guid: dec09f3e730e57e48bd3a77a46e80e2d, type: 2}
 --- !u!4 &1791730467
 Transform:
   m_ObjectHideFlags: 0
@@ -433,5 +399,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
