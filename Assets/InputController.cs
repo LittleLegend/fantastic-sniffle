@@ -29,7 +29,6 @@ public void SetModeStonewall()
 {if (currentMode!= TileTypes.Stonewall)
         {
             currentMode = TileTypes.Stonewall;
-            
         }
 }
 
@@ -38,16 +37,6 @@ public void SetModeThorntendrils()
         if (currentMode != TileTypes.Thorntendrils)
         {
             currentMode = TileTypes.Thorntendrils;
-           
-        }
-}
-
-public void SetModeDeep()
-{
-        if (currentMode != TileTypes.DeepA)
-        {
-            currentMode = TileTypes.DeepA;
-           
         }
 }
 

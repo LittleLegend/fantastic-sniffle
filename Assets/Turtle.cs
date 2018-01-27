@@ -178,11 +178,16 @@ public bool[,] getCollisionMap(TileTypes[,] tileMap)
         for (int y = 0; y < tileMap.GetLength(0); y++) {
                 for (int x = 0; x< tileMap.GetLength(1); x++) {
                         switch (tileMap[y,x]) {
-                        case (TileTypes.DeepA):
+                        case (TileTypes.DeepA_0):
+                        case (TileTypes.DeepA_90):
                         case (TileTypes.DeepB_0):
                         case (TileTypes.DeepB_90):
                         case (TileTypes.DeepB_180):
                         case (TileTypes.DeepB_270):
+                        case (TileTypes.DeepC_0):
+                        case (TileTypes.DeepC_90):
+                        case (TileTypes.DeepC_180):
+                        case (TileTypes.DeepC_270):
                         case (TileTypes.Thorntendrils):
                         case (TileTypes.Stonewall):
                                 collisionMap [y, x] = false;
