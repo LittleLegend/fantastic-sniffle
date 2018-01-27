@@ -54,10 +54,6 @@ public static List<Point> FindPath(Grid grid, Point startPos, Point targetPos, b
 /// <returns>List of grid nodes that represent the path to walk.</returns>
 private static List<Node> _ImpFindPath(Grid grid, Point startPos, Point targetPos, bool ignorePrices = false)
 {
-        Debug.Log("x: " + startPos.x);
-        Debug.Log("y: " + startPos.y);
-        Debug.Log("x_l: " + grid.nodes.GetLength(0));
-        Debug.Log("y_l: " + grid.nodes.GetLength(1));
         Node startNode = grid.nodes[startPos.x, startPos.y];
         Node targetNode = grid.nodes[targetPos.x, targetPos.y];
 

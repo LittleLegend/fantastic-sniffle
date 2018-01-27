@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum TileTypes {Background,
-                Stonewall, Water, Thorntendrils,
-                DeepA,
-                DeepB_0, DeepB_90, DeepB_180, DeepB_270,
-                DeepC_0, DeepC_180 };
+public enum TileTypes {Background,
+                       Stonewall, Water, Thorntendrils,
+                       DeepA,
+                       DeepB_0, DeepB_90, DeepB_180, DeepB_270,
+                       DeepC_0, DeepC_180 };
 
 public class TileFactory : MonoBehaviour {
-
-
 public int tilecount;
 float width;
 float length;
@@ -22,19 +20,11 @@ public GameObject DeepA;
 public GameObject DeepB;
 public GameObject DeepC;
 
-TileTypes[,] tilemap = new TileTypes[,] {
-        // {TileTypes.DeepB_0, TileTypes.DeepB_90 }
-        {TileTypes.Background, TileTypes.Water, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Stonewall, TileTypes.Background, TileTypes.Background},
-        {TileTypes.Background, TileTypes.Water, TileTypes.Background, TileTypes.Background, TileTypes.DeepB_90, TileTypes.DeepB_180, TileTypes.Background, TileTypes.Stonewall, TileTypes.Stonewall, TileTypes.Stonewall},
-        {TileTypes.Background, TileTypes.Water, TileTypes.Background, TileTypes.Background, TileTypes.DeepB_0, TileTypes.DeepB_270, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background},
-        {TileTypes.Background, TileTypes.Water, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.DeepB_90, TileTypes.DeepB_180, TileTypes.Background},
-        {TileTypes.Background, TileTypes.Water, TileTypes.Background, TileTypes.Background, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.DeepB_0, TileTypes.DeepB_270, TileTypes.Background},
-        {TileTypes.Background, TileTypes.Water, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background}
-};
+
 
 // Use this for initialization
 void Start () {
-        StartCoroutine(createsTiles());
+        createsTiles();
 }
 
 // Update is called once per frame
@@ -42,13 +32,12 @@ void Update () {
 
 }
 
-public IEnumerator createsTiles()
-{
-        for(int i=0; i<tilemap.GetLength(0); i++)
+public void createsTiles() {
+        for(int i=0; i<Level1.tilemap.GetLength(0); i++)
         {
-                for(int j=0; j<tilemap.GetLength(1); j++)
+                for(int j=0; j<Level1.tilemap.GetLength(1); j++)
                 {
-                        switch (tilemap[i,j]) {
+                        switch (Level1.tilemap[i,j]) {
                         case (TileTypes.Background):
                                 Debug.Log ("create Background at " + i + ", " + j);
                                 Instantiate (Background, new Vector2 (j, -i), Quaternion.identity);
@@ -101,23 +90,32 @@ public IEnumerator createsTiles()
         }
 
         // create the tiles map
-        bool[,] tilesmap = new bool[3,3] {
-                { true, false, true },
-                { true, false, true },
-                { true, true, true }
-        };
+        // bool[,] collisionMap = new bool[3,3] {
+        //         { true, false, true },
+        //         { true, false, true },
+        //         { true, true, true }
+        // };
+
+        bool[,] collisionMap = getCollisionMapCat(Level1.tilemap);
+
+        for (int x = 0; x < collisionMap.GetLength(0); x++) {
+                for (int y = 0; y< collisionMap.GetLength(1); y++) {
+                        Debug.Log(x+", "+y+": "+collisionMap[x,y]);
+                }
+        }
+
         // set values here....
         // every float in the array represent the cost of passing the tile at that position.
         // use 0.0f for blocking tiles.
 
         // create a grid
-        int width = tilesmap.GetLength(0);
-        int height = tilesmap.GetLength (1);
-        PathFind.Grid grid = new PathFind.Grid(width, height, tilesmap);
+        int width = collisionMap.GetLength(0);
+        int height = collisionMap.GetLength (1);
+        PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
 
         // create source and target points
-        PathFind.Point _from = new PathFind.Point(0, 0);
-        PathFind.Point _to = new PathFind.Point(0, 2);
+        PathFind.Point _from = new PathFind.Point(0, 6);
+        PathFind.Point _to = new PathFind.Point(2, 9);
 
         // get path
         // path will either be a list of Points (x, y), or an empty list if no path is found.
@@ -126,15 +124,60 @@ public IEnumerator createsTiles()
         foreach (var point in path) {
                 Debug.Log (point.x + ", "+ point.y);
         }
-
-        yield return null;
 }
 
-public IEnumerator addTiles()
+public bool[,] getCollisionMapCat(TileTypes[,] tileMap)
 {
+        bool[,] collisionMap = new bool[tileMap.GetLength(0), tileMap.GetLength(1)];
+
+        for (int x = 0; x < tileMap.GetLength(0); x++) {
+                for (int y = 0; y< tileMap.GetLength(1); y++) {
+                        switch (tileMap[x,y]) {
+                        case (TileTypes.DeepA):
+                        case (TileTypes.DeepB_0):
+                        case (TileTypes.DeepB_90):
+                        case (TileTypes.DeepB_180):
+                        case (TileTypes.DeepB_270):
+                        case (TileTypes.Stonewall):
+                        case (TileTypes.Water):
+                                collisionMap [x, y] = false;
+                                break;
+                        default:
+                                collisionMap [x, y] = true;
+                                break;
+                        }
+                }
+        }
+
+        return collisionMap;
+
+}
 
 
-        yield return null;
+public bool[,] getCollisionMapBird(TileTypes[,] tileMap)
+{
+        bool[,] collisionMap = new bool[tileMap.GetLength(0), tileMap.GetLength(1)];
+
+        for (int x = 0; x < tileMap.GetLength(0); x++) {
+                for (int y = 0; y< tileMap.GetLength(1); y++) {
+                        switch (tileMap[x,y]) {
+                        case (TileTypes.DeepA):
+                        case (TileTypes.DeepB_0):
+                        case (TileTypes.DeepB_90):
+                        case (TileTypes.DeepB_180):
+                        case (TileTypes.DeepB_270):
+                        case (TileTypes.Thorntendrils):
+                        case (TileTypes.Water):
+                                collisionMap [x, y] = false;
+                                break;
+                        default:
+                                collisionMap [x, y] = true;
+                                break;
+                        }
+                }
+        }
+
+        return collisionMap;
 }
 
 }
