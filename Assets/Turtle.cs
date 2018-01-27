@@ -21,7 +21,7 @@ public class Turtle : MonoBehaviour {
     public IEnumerator roaming()
     {
         
-        int rand = Random.Range(0, 4);
+        int rand = Random.Range(0, 7);
         
         Vector3 Point = Vector2.zero;
 
@@ -75,7 +75,57 @@ public class Turtle : MonoBehaviour {
             Point = new Vector3(transform.position.x , transform.position.y - roamingDistance , 0);
         }
 
-        
+        if (rand == 4)
+        {
+            if (gameObject.transform.localScale.x == 1)
+            {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.9f, gameObject.transform.position.y);
+            }
+
+            gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+
+            Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
+        }
+
+        if (rand == 5)
+        {
+
+
+            if (gameObject.transform.localScale.x == -1)
+            {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x - 0.9f, gameObject.transform.position.y);
+            }
+            gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+
+            Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
+        }
+
+        if (rand == 6)
+        {
+            if (gameObject.transform.localScale.x == 1)
+            {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.9f, gameObject.transform.position.y);
+            }
+
+            gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+
+            Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
+        }
+
+        if (rand == 7)
+        {
+
+
+            if (gameObject.transform.localScale.x == -1)
+            {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x - 0.9f, gameObject.transform.position.y);
+            }
+            gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+
+            Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
+        }
+
+
 
         Vector3 AnimalStartPosition = gameObject.transform.position;
         Vector3 dir = (Point - AnimalStartPosition).normalized;
