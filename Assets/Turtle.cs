@@ -8,11 +8,13 @@ public int roamingDistance;
 public int speed;
 public bool alive;
 public TileFactory tileFactory;
+public AnimalFactory animalFactory;
 
 void Start () {
         alive = true;
-        StartCoroutine(randomizeRoaming(50,1));
         tileFactory = GameObject.Find ("TileFactory").GetComponent<TileFactory>();
+        animalFactory = GameObject.Find ("AnimalFactory").GetComponent<AnimalFactory>();
+        StartCoroutine(randomizeRoaming());
 }
 
 void Update () {
@@ -50,15 +52,16 @@ public Direction getDirection(PathFind.Point from, PathFind.Point to) {
 
 public IEnumerator roaming()
 {
-        bool[,] collisionMap = getCollisionMapTurtle (Level1.tilemap);
+        bool[,] collisionMap = getCollisionMap (Level1.tilemap);
+        Vector2 preyPosition = findClosestPrey();
 
         int width = collisionMap.GetLength(0);
         int height = collisionMap.GetLength (1);
         PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
-        PathFind.Point from = new PathFind.Point(Mathf.RoundToInt(gameObject.transform.position.x),  Mathf.RoundToInt(gameObject.transform.position.y) * -1);
-
-        PathFind.Point to = new PathFind.Point(4, 5);
-
+        PathFind.Point from = new PathFind.Point(Mathf.RoundToInt(gameObject.transform.position.x),
+                                                 Mathf.RoundToInt(gameObject.transform.position.y) * -1);
+        PathFind.Point to = new PathFind.Point(Mathf.RoundToInt(preyPosition.x),
+                                               Mathf.RoundToInt(preyPosition.y) * -1);
 
         List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
 
@@ -115,12 +118,10 @@ public IEnumerator roaming()
 
                 Vector3 AnimalStartPosition = gameObject.transform.position;
                 Vector3 dir = (Point - AnimalStartPosition).normalized;
-                float distanceToPointFromStart = Vector2.Distance(Point, AnimalStartPosition);
                 float distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
 
                 while (distanceToPoint >= 0.01)
                 {
-
                         distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
                         gameObject.transform.position += dir / 100 * speed;
 
@@ -130,24 +131,38 @@ public IEnumerator roaming()
         }
 }
 
-public IEnumerator randomizeRoaming(int percent, int seconds)
+public IEnumerator randomizeRoaming()
 {
         while (alive == true)
         {
-                yield return new WaitForSeconds(seconds);
+                yield return roaming();
+        }
+}
 
-                if (Random.Range(0, 100) < percent && isRoaming == false)
-                {
+public Vector2 findClosestPrey() {
+        Vector2 preyPosition = transform.position;
+        float distance = 100000;
+        float myX = transform.position.x;
+        float myY = transform.position.y;
 
-                        StartCoroutine(roaming());
-                        isRoaming = true;
+        foreach (var cat in animalFactory.Cats) {
+                float theirX = cat.transform.position.x;
+                float theirY = cat.transform.position.y;
+
+                float newDistance = Mathf.Abs(myX - theirX) + Mathf.Abs(myY - theirY);
+
+                if (newDistance < distance) {
+                        distance = newDistance;
+                        preyPosition = cat.transform.position;
                 }
 
         }
 
+        return preyPosition;
 }
 
-public bool[,] getCollisionMapTurtle(TileTypes[,] tileMap)
+
+public bool[,] getCollisionMap(TileTypes[,] tileMap)
 {
         bool[,] collisionMap = new bool[tileMap.GetLength(0), tileMap.GetLength(1)];
 

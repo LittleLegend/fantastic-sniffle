@@ -17,7 +17,7 @@ public List<GameObject> Birds;
 
 // Use this for initializ ation
 void Start () {
-								StartCoroutine(createRandomAnimals());
+        StartCoroutine(createRandomAnimals());
 }
 
 // Update is called once per frame
@@ -26,48 +26,48 @@ void Update () {
 }
 
 public void addAnimal(AnimalType animal, Vector2 position) {
-								Vector2 gameFieldPosition = new Vector2(position.x, -1 * position.y);
+        Vector2 gameFieldPosition = new Vector2(position.x, -1 * position.y);
 
-								switch (animal) {
-								case (AnimalType.Cat):
-																Cats.Add(Instantiate (Cat, gameFieldPosition, Quaternion.identity));
-																break;
-								case (AnimalType.Bird):
-																Birds.Add(Instantiate (Bird, gameFieldPosition, Quaternion.identity));
-																break;
-								case (AnimalType.Turtle):
-																Turtles.Add(Instantiate (Turtle, gameFieldPosition, Quaternion.identity));
-																break;
+        switch (animal) {
+        case (AnimalType.Cat):
+                Cats.Add(Instantiate (Cat, gameFieldPosition, Quaternion.identity));
+                break;
+        case (AnimalType.Bird):
+                Birds.Add(Instantiate (Bird, gameFieldPosition, Quaternion.identity));
+                break;
+        case (AnimalType.Turtle):
+                Turtles.Add(Instantiate (Turtle, gameFieldPosition, Quaternion.identity));
+                break;
 
-								default:
-																break;
-								}
+        default:
+                break;
+        }
 }
 
 public IEnumerator createRandomAnimals () {
-								while (true) {
-																yield return new WaitForSeconds(1);
+        while (true) {
+                AnimalType rand = (AnimalType) Random.Range(0, 3);
+                Vector2 position;
 
-																AnimalType rand = (AnimalType) Random.Range(0, 3);
-																Vector2 position;
+                switch (rand) {
+                case (AnimalType.Cat):
+                        position= new Vector2(4, 3);
+                        break;
+                case (AnimalType.Turtle):
+                        position = new Vector2(0,0);
+                        break;
+                case (AnimalType.Bird):
+                        position = new Vector2(9,0);
+                        break;
+                default:
+                        position = new Vector2(9,0);
+                        break;
+                }
 
-																switch (rand) {
-																case (AnimalType.Cat):
-																								position= new Vector2(4, 3);
-																								break;
-																case (AnimalType.Turtle):
-																								position = new Vector2(0,0);
-																								break;
-																case (AnimalType.Bird):
-																								position = new Vector2(9,0);
-																								break;
-																default:
-																								position = new Vector2(9,0);
-																								break;
-																}
+                addAnimal(rand, position);
 
-																addAnimal(rand, position);
-								}
+                yield return new WaitForSeconds(5);
+        }
 }
 
 
