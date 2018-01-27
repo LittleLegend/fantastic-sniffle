@@ -33,54 +33,57 @@ void Update () {
 }
 
 public void createsTiles() {
-        for(int i=0; i<Level1.tilemap.GetLength(0); i++)
+        int width = Level1.tilemap.GetLength(0);
+        int height = Level1.tilemap.GetLength(1);
+
+        for(int x=0; x < width; x++)
         {
-                for(int j=0; j<Level1.tilemap.GetLength(1); j++)
+                for(int y=0; y < height; y++)
                 {
-                        switch (Level1.tilemap[i,j]) {
+                        switch (Level1.tilemap[x,y]) {
                         case (TileTypes.Background):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (Background, new Vector2 (j, -i), Quaternion.identity);
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (Background, new Vector2 (x, -y), Quaternion.identity);
                                 break;
                         case (TileTypes.Stonewall):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (Stonewall, new Vector2 (j, -i), Quaternion.identity);
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (Stonewall, new Vector2 (x, -y), Quaternion.identity);
                                 break;
                         case (TileTypes.Water):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (Water, new Vector2 (j, -i), Quaternion.identity);
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (Water, new Vector2 (x, -y), Quaternion.identity);
                                 break;
                         case (TileTypes.Thorntendrils):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (Thorntendrils, new Vector2 (j, -i), Quaternion.identity);
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (Thorntendrils, new Vector2 (x, -y), Quaternion.identity);
                                 break;
                         case (TileTypes.DeepA):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (DeepA, new Vector2 (j, -i), Quaternion.identity);
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (DeepA, new Vector2 (x, -y), Quaternion.identity);
                                 break;
                         case (TileTypes.DeepB_0):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (DeepB, new Vector2 (j, -i), Quaternion.AngleAxis(0, Vector3.forward));
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(0, Vector3.forward));
                                 break;
                         case (TileTypes.DeepB_90):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (DeepB, new Vector2 (j, -i), Quaternion.AngleAxis(270, Vector3.forward));
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(270, Vector3.forward));
                                 break;
                         case (TileTypes.DeepB_180):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (DeepB, new Vector2 (j, -i), Quaternion.AngleAxis(180, Vector3.forward));
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(180, Vector3.forward));
                                 break;
                         case (TileTypes.DeepB_270):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (DeepB, new Vector2 (j, -i), Quaternion.AngleAxis(90, Vector3.forward));
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.AngleAxis(90, Vector3.forward));
                                 break;
                         case (TileTypes.DeepC_0):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (DeepB, new Vector2 (j, -i), Quaternion.identity);
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (DeepB, new Vector2 (x, -y), Quaternion.identity);
                                 break;
                         case (TileTypes.DeepC_180):
-                                Debug.Log ("create Background at " + i + ", " + j);
-                                Instantiate (DeepC, new Vector2 (j, -i), Quaternion.AngleAxis(180, Vector3.forward));
+                                Debug.Log ("create Background at " + x + ", " + y);
+                                Instantiate (DeepC, new Vector2 (x, -y), Quaternion.AngleAxis(180, Vector3.forward));
                                 break;
                         default:
                                 break;
@@ -96,34 +99,34 @@ public void createsTiles() {
         //         { true, true, true }
         // };
 
-        bool[,] collisionMap = getCollisionMapCat(Level1.tilemap);
-
-        for (int x = 0; x < collisionMap.GetLength(0); x++) {
-                for (int y = 0; y< collisionMap.GetLength(1); y++) {
-                        Debug.Log(x+", "+y+": "+collisionMap[x,y]);
-                }
-        }
-
-        // set values here....
-        // every float in the array represent the cost of passing the tile at that position.
-        // use 0.0f for blocking tiles.
-
-        // create a grid
-        int width = collisionMap.GetLength(0);
-        int height = collisionMap.GetLength (1);
-        PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
-
-        // create source and target points
-        PathFind.Point _from = new PathFind.Point(0, 6);
-        PathFind.Point _to = new PathFind.Point(2, 9);
-
-        // get path
-        // path will either be a list of Points (x, y), or an empty list if no path is found.
-        List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to);
-
-        foreach (var point in path) {
-                Debug.Log (point.x + ", "+ point.y);
-        }
+        // bool[,] collisionMap = getCollisionMapCat(Level1.tilemap);
+        // 
+        // for (int x = 0; x < collisionMap.GetLength(0); x++) {
+        //         for (int y = 0; y< collisionMap.GetLength(1); y++) {
+        //                 Debug.Log(x+", "+y+": "+collisionMap[x,y]);
+        //         }
+        // }
+        // 
+        // // set values here....
+        // // every float in the array represent the cost of passing the tile at that position.
+        // // use 0.0f for blocking tiles.
+        // 
+        // // create a grid
+        // int width = collisionMap.GetLength(0);
+        // int height = collisionMap.GetLength (1);
+        // PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
+        // 
+        // // create source and target points
+        // PathFind.Point _from = new PathFind.Point(0, 6);
+        // PathFind.Point _to = new PathFind.Point(2, 9);
+        // 
+        // // get path
+        // // path will either be a list of Points (x, y), or an empty list if no path is found.
+        // List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to);
+        // 
+        // foreach (var point in path) {
+        //         Debug.Log (point.x + ", "+ point.y);
+        // }
 }
 
 public bool[,] getCollisionMapCat(TileTypes[,] tileMap)

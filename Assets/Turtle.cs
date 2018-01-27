@@ -16,107 +16,138 @@ void Start () {
 void Update () {
 }
 
-// public enum Direction {Up,
-//                        Down, Right, Left,
-//                        DeepA,
-//                        DeepB_0, DeepB_90, DeepB_180, DeepB_270,
-//                        DeepC_0, DeepC_180 };
+public enum Direction {UP, DOWN,
+                       RIGHT, LEFT,
+                       UP_RIGHT, UP_LEFT,
+                       DOWN_RIGHT, DOWN_LEFT};
+
+public Direction getDirection(PathFind.Point from, PathFind.Point to) {
+        bool right = from.x < to.x;
+        bool left = from.x > to.x;
+        bool down = from.y < to.y;
+        bool up = from.y > to.y;
+
+        if (down && !left && !right) {
+                Debug.LogWarning("should go down");
+                return Direction.DOWN;
+        } else if (down && left) {
+                Debug.LogWarning("should go down left");
+                return Direction.DOWN_LEFT;
+        } else if (down && right) {
+                Debug.LogWarning("should go down right");
+                return Direction.DOWN_RIGHT;
+        } else if (up && !left && !right) {
+                Debug.Log("should go up");
+                return Direction.UP;
+        } else if (up && left) {
+                Debug.LogWarning("should go up left");
+                return Direction.UP_LEFT;
+        } else if (up && right) {
+                Debug.LogWarning("should go up right");
+                return Direction.UP_RIGHT;
+        } else if (right) {
+                Debug.LogWarning("should go right");
+                return Direction.RIGHT;
+        } else {
+                Debug.LogWarning("should go left");
+                return Direction.LEFT;
+        }
+}
 
 public IEnumerator roaming()
 {
+        bool[,] collisionMap = getCollisionMapTurtle (Level1.tilemap);
 
-        int rand = Random.Range(0, 7);
+        int width = collisionMap.GetLength(0);
+        int height = collisionMap.GetLength (1);
+        PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
+        PathFind.Point from = new PathFind.Point(Mathf.RoundToInt(gameObject.transform.position.x),  Mathf.RoundToInt(gameObject.transform.position.y) * -1);
 
-        Vector3 Point = Vector2.zero;
+        PathFind.Point to = new PathFind.Point(9, 4);
 
-        Debug.Log(rand);
-        if (rand == 0)
-        {
+        Debug.Log("length x " + Level1.tilemap.GetLength(0));
+        Debug.Log("length y " + Level1.tilemap.GetLength(1));
+        Debug.Log("clength x " + collisionMap.GetLength(0));
+        Debug.Log("clength y " + collisionMap.GetLength(1));
+        Debug.Log("glength x " + grid.nodes.GetLength(0));
+        Debug.Log("glength y " + grid.nodes.GetLength(1));
+        Debug.Log("from x " + from.x);
+        Debug.Log("from y " + from.y);
+        Debug.Log("to x " + to.x);
+        Debug.Log("to y " + to.y);
 
+        List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
 
-                gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+        Debug.LogWarning (path.Count);
 
-                Point = new Vector3(transform.position.x +  roamingDistance, transform.position.y, 0);
+        if (path.Count > 0) {
+                Direction rand = getDirection(from, path[0]);
+                Vector3 Point = Vector2.zero;
+
+                if (rand == Direction.RIGHT)
+                {
+                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                        Point = new Vector3(transform.position.x +  roamingDistance, transform.position.y, 0);
+                }
+
+                if (rand == Direction.UP)
+                {
+                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                        Point = new Vector3(transform.position.x, transform.position.y+ roamingDistance, 0);
+                }
+
+                if (rand == Direction.LEFT)
+                {
+                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                        Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
+                }
+
+                if (rand == Direction.DOWN)
+                {
+                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+                        Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
+                }
+
+                if (rand == Direction.UP_RIGHT)
+                {
+                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                        Point = new Vector3(transform.position.x + roamingDistance, transform.position.y + roamingDistance, 0);
+                }
+
+                if (rand == Direction.UP_LEFT)
+                {
+                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+                        Point = new Vector3(transform.position.x - roamingDistance, transform.position.y + roamingDistance, 0);
+                }
+
+                if (rand == Direction.DOWN_LEFT)
+                {
+                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                        Point = new Vector3(transform.position.x - roamingDistance, transform.position.y - roamingDistance, 0);
+                }
+
+                if (rand == Direction.DOWN_RIGHT)
+                {
+                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+                        Point = new Vector3(transform.position.x + roamingDistance, transform.position.y - roamingDistance, 0);
+                }
+
+                Vector3 AnimalStartPosition = gameObject.transform.position;
+                Vector3 dir = (Point - AnimalStartPosition).normalized;
+                float distanceToPointFromStart = Vector2.Distance(Point, AnimalStartPosition);
+                float distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
+
+                while (distanceToPoint >= 0.01)
+                {
+
+                        distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
+                        gameObject.transform.position += dir / 100 * speed;
+                        //Debug.Log(distanceToPoint);
+
+                        yield return null;
+                }
+                isRoaming = false;
         }
-
-        if (rand == 1)
-        {
-
-
-                gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
-
-                Point = new Vector3(transform.position.x, transform.position.y+ roamingDistance, 0);
-        }
-
-        if (rand == 2)
-        {
-
-
-                gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
-
-                Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
-        }
-
-        if (rand == 3)
-        {
-
-
-                gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
-
-                Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
-        }
-
-        if (rand == 4)
-        {
-
-                gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
-
-                Point = new Vector3(transform.position.x + roamingDistance, transform.position.y + roamingDistance, 0);
-        }
-
-        if (rand == 5)
-        {
-
-                gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
-
-                Point = new Vector3(transform.position.x - roamingDistance, transform.position.y + roamingDistance, 0);
-        }
-
-        if (rand == 6)
-        {
-
-
-                gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
-
-                Point = new Vector3(transform.position.x - roamingDistance, transform.position.y - roamingDistance, 0);
-        }
-
-        if (rand == 7)
-        {
-
-                gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
-
-                Point = new Vector3(transform.position.x + roamingDistance, transform.position.y - roamingDistance, 0);
-        }
-
-
-
-        Vector3 AnimalStartPosition = gameObject.transform.position;
-        Vector3 dir = (Point - AnimalStartPosition).normalized;
-        float distanceToPointFromStart = Vector2.Distance(Point, AnimalStartPosition);
-        float distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
-
-        while (distanceToPoint >= 0.01)
-        {
-
-                distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
-                gameObject.transform.position += dir / 100 * speed;
-                //Debug.Log(distanceToPoint);
-
-                yield return null;
-        }
-        isRoaming = false;
-
 }
 
 public IEnumerator randomizeRoaming(int percent, int seconds)
@@ -142,9 +173,9 @@ public bool[,] getCollisionMapTurtle(TileTypes[,] tileMap)
 {
         bool[,] collisionMap = new bool[tileMap.GetLength(0), tileMap.GetLength(1)];
 
-        for (int x = 0; x < tileMap.GetLength(0); x++) {
-                for (int y = 0; y< tileMap.GetLength(1); y++) {
-                        switch (tileMap[x,y]) {
+        for (int y = 0; y < tileMap.GetLength(0); y++) {
+                for (int x = 0; x< tileMap.GetLength(1); x++) {
+                        switch (tileMap[y,x]) {
                         case (TileTypes.DeepA):
                         case (TileTypes.DeepB_0):
                         case (TileTypes.DeepB_90):
@@ -152,10 +183,10 @@ public bool[,] getCollisionMapTurtle(TileTypes[,] tileMap)
                         case (TileTypes.DeepB_270):
                         case (TileTypes.Thorntendrils):
                         case (TileTypes.Stonewall):
-                                collisionMap [x, y] = false;
+                                collisionMap [y, x] = false;
                                 break;
                         default:
-                                collisionMap [x, y] = true;
+                                collisionMap [y, x] = true;
                                 break;
                         }
                 }
