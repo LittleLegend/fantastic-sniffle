@@ -103,6 +103,7 @@ MonoBehaviour:
   tileFactory: {fileID: 0}
   Values: {fileID: 0}
   myType: 0
+  hasAnimal: 0
 --- !u!212 &212519863177329030
 SpriteRenderer:
   m_ObjectHideFlags: 1

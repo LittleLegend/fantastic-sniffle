@@ -1394,14 +1394,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4153879622ad44e4ab92c771b9657ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stonewallCount: 10
-  waterCount: 10
-  thorntendrilsCount: 10
-  deepCount: 10
+  stonewallCount: 100
+  waterCount: 100
+  thorntendrilsCount: 100
   stonewallLabel: {fileID: 144703609}
   waterLabel: {fileID: 1625860196}
   thorntendrilsLabel: {fileID: 1410435250}
-  deepLabel: {fileID: 0}
 --- !u!4 &1705302661
 Transform:
   m_ObjectHideFlags: 0
