@@ -25,11 +25,14 @@ public enum Direction {UP, DOWN,
                        UP_RIGHT, UP_LEFT,
                        DOWN_RIGHT, DOWN_LEFT};
 
-public Direction getDirection(PathFind.Point from, PathFind.Point to) {
-        bool right = from.x < to.x;
-        bool left = from.x > to.x;
-        bool down = from.y < to.y;
-        bool up = from.y > to.y;
+public Direction getDirection(Vector2 from, Vector2 to) {
+        Vector2 roundedFrom = new Vector2(Mathf.RoundToInt(from.x), Mathf.RoundToInt(from.y));
+        Vector2 roundedTo = new Vector2(Mathf.RoundToInt(to.x), Mathf.RoundToInt(to.y));
+
+        bool right = roundedFrom.x < roundedTo.x;
+        bool left = roundedFrom.x > roundedTo.x;
+        bool down = roundedFrom.y > roundedTo.y;
+        bool up = roundedFrom.y < roundedTo.y;
 
         if (down && !left && !right) {
                 return Direction.DOWN;
@@ -50,94 +53,98 @@ public Direction getDirection(PathFind.Point from, PathFind.Point to) {
         }
 }
 
-public IEnumerator roaming()
+public IEnumerator moveTo(Vector2 to)
 {
-        bool[,] collisionMap = getCollisionMap (Level1.tilemap);
-        Vector2 preyPosition = findClosestPrey();
+        Debug.LogWarning ("start corouting");
+        Direction rand = getDirection(gameObject.transform.position, to);
+        Vector3 Point = Vector2.zero;
 
-        int width = collisionMap.GetLength(0);
-        int height = collisionMap.GetLength (1);
-        PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
-        PathFind.Point from = new PathFind.Point(Mathf.RoundToInt(gameObject.transform.position.x),
-                                                 Mathf.RoundToInt(gameObject.transform.position.y) * -1);
-        PathFind.Point to = new PathFind.Point(Mathf.RoundToInt(preyPosition.x),
-                                               Mathf.RoundToInt(preyPosition.y) * -1);
+        if (rand == Direction.RIGHT)
+        {
+                gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                Point = new Vector3(transform.position.x +  roamingDistance, transform.position.y, 0);
+        }
 
-        List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
+        if (rand == Direction.UP)
+        {
+                Point = new Vector3(transform.position.x, transform.position.y+ roamingDistance, 0);
+        }
 
+        if (rand == Direction.LEFT)
+        {
+                gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+                Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
+        }
 
-        if (path.Count > 0) {
-                Direction rand = getDirection(from, path[0]);
-                Vector3 Point = Vector2.zero;
+        if (rand == Direction.DOWN)
+        {
+                Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
+        }
 
-                if (rand == Direction.RIGHT)
-                {
-                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
-                        Point = new Vector3(transform.position.x +  roamingDistance, transform.position.y, 0);
-                }
+        if (rand == Direction.UP_RIGHT)
+        {
+                gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                Point = new Vector3(transform.position.x + roamingDistance, transform.position.y + roamingDistance, 0);
+        }
 
-                if (rand == Direction.UP)
-                {
-                        Point = new Vector3(transform.position.x, transform.position.y+ roamingDistance, 0);
-                }
+        if (rand == Direction.UP_LEFT)
+        {
+                gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+                Point = new Vector3(transform.position.x - roamingDistance, transform.position.y + roamingDistance, 0);
+        }
 
-                if (rand == Direction.LEFT)
-                {
-                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
-                        Point = new Vector3(transform.position.x - roamingDistance, transform.position.y, 0);
-                }
+        if (rand == Direction.DOWN_LEFT)
+        {
+                gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+                Point = new Vector3(transform.position.x - roamingDistance, transform.position.y - roamingDistance, 0);
+        }
 
-                if (rand == Direction.DOWN)
-                {
-                        Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
-                }
+        if (rand == Direction.DOWN_RIGHT)
+        {
+                gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+                Point = new Vector3(transform.position.x + roamingDistance, transform.position.y - roamingDistance, 0);
+        }
 
-                if (rand == Direction.UP_RIGHT)
-                {
-                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
-                        Point = new Vector3(transform.position.x + roamingDistance, transform.position.y + roamingDistance, 0);
-                }
+        Vector3 AnimalStartPosition = gameObject.transform.position;
+        Vector3 dir = (Point - AnimalStartPosition).normalized;
 
-                if (rand == Direction.UP_LEFT)
-                {
-                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
-                        Point = new Vector3(transform.position.x - roamingDistance, transform.position.y + roamingDistance, 0);
-                }
-
-                if (rand == Direction.DOWN_LEFT)
-                {
-                        gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
-                        Point = new Vector3(transform.position.x - roamingDistance, transform.position.y - roamingDistance, 0);
-                }
-
-                if (rand == Direction.DOWN_RIGHT)
-                {
-                        gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
-                        Point = new Vector3(transform.position.x + roamingDistance, transform.position.y - roamingDistance, 0);
-                }
-
-                Vector3 AnimalStartPosition = gameObject.transform.position;
-                Vector3 dir = (Point - AnimalStartPosition).normalized;
+        while (true) {
                 float distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
 
-                while (distanceToPoint >= 0.01)
+                if (distanceToPoint >= 0.01)
                 {
-
-                        distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
+                        // keep walking
                         gameObject.transform.position += dir / 100 * speed;
-
                         yield return null;
+                } else {
+                        // stop working
+                        Debug.LogWarning ("break corouting");
+                        break;
                 }
-                isRoaming = false;
         }
+        Debug.LogWarning ("leave corouting");
 }
 
 public IEnumerator randomizeRoaming()
 {
-
         while (alive == true)
         {
-                yield return roaming();
+                bool[,] collisionMap = getCollisionMap (Level1.tilemap);
+                Vector2 preyPosition = findClosestPrey();
+
+                int width = collisionMap.GetLength(0);
+                int height = collisionMap.GetLength (1);
+                PathFind.Grid grid = new PathFind.Grid(width, height, collisionMap);
+                PathFind.Point from = PathFind.Point.fromVector (transform.position);
+                PathFind.Point to = PathFind.Point.fromVector (preyPosition);
+                List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
+
+                if (path.Count > 0) {
+                        PathFind.Point next = path[0];
+                        yield return moveTo(next.toVector());
+                }
+
+                yield return null;
         }
 }
 

@@ -17,6 +17,7 @@ public List<GameObject> Birds;
 
 // Use this for initializ ation
 void Start () {
+        // createRandomAnimals();
         StartCoroutine(createRandomAnimals());
 }
 
@@ -45,6 +46,9 @@ public void addAnimal(AnimalType animal, Vector2 position) {
 }
 
 public IEnumerator createRandomAnimals () {
+        // addAnimal(AnimalType.Cat, new Vector2(4, 3));
+        // addAnimal(AnimalType.Turtle, new Vector2(0, 0));
+        // addAnimal(AnimalType.Bird, new Vector2(9, 0));
         while (true) {
                 AnimalType rand = (AnimalType) Random.Range(0, 3);
                 Vector2 position;
