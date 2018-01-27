@@ -7,6 +7,8 @@ public bool isRoaming=false;
 public int roamingDistance;
 public int speed;
 public bool alive;
+public bool ishunting=false;
+public bool hashunted = false;
 public TileFactory tileFactory;
 public AnimalFactory animalFactory;
 
@@ -123,6 +125,7 @@ public IEnumerator moveTo(Vector2 to)
                 }
         }
         Debug.LogWarning ("leave corouting");
+        
 }
 
 public IEnumerator randomizeRoaming()
@@ -140,9 +143,12 @@ public IEnumerator randomizeRoaming()
                 List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
 
                 if (path.Count > 0) {
-                        PathFind.Point next = path[0];
-                        yield return moveTo(next.toVector());
-                }
+                ishunting = true;
+                PathFind.Point next = path[0];
+                yield return moveTo(next.toVector());
+                
+
+            }ishunting = false;
 
                 yield return null;
         }
@@ -218,6 +224,11 @@ public bool[,] getCollisionMap(TileTypes[,] tileMap)
 
            
 
+        }
+
+        if (col.gameObject.tag == "Bird")
+        {
+            Debug.Log("You Died");
         }
 
     }

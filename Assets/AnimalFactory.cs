@@ -18,8 +18,56 @@ public List<GameObject> Birds;
 // Use this for initializ ation
 void Start () {
         // createRandomAnimals();
+        StartCoroutine(checkWinPerSecond(1));
         StartCoroutine(createRandomAnimals());
 }
+
+public IEnumerator checkWinPerSecond(int sek)
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(sek);
+           if( checkWinCon())
+            {
+
+                Debug.Log("You Won");
+            }
+        }
+        
+    }
+
+public bool checkWinCon()
+    {
+        if(Cats.Count==0 || Birds.Count == 0 || Turtles.Count == 0 )
+        { return false; }
+
+        foreach (var cat in Cats)
+        {
+            if (cat.GetComponent<Cat>().ishunting)
+            {
+                return false;
+            }
+        }
+
+        foreach (var turtle in Turtles)
+        {
+            if (turtle.GetComponent<Turtle>().ishunting)
+            {
+                return false;
+            }
+        }
+
+        foreach (var bird in Birds)
+        {
+            if (bird.GetComponent<Bird>().ishunting)
+            {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
 
 // Update is called once per frame
 void Update () {

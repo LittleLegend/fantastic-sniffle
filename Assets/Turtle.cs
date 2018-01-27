@@ -9,8 +9,10 @@ public int speed;
 public bool alive;
 public TileFactory tileFactory;
 public AnimalFactory animalFactory;
+public bool ishunting = false;
+public bool hashunted = false;
 
-void Start () {
+    void Start () {
         alive = true;
         tileFactory = GameObject.Find ("TileFactory").GetComponent<TileFactory>();
         animalFactory = GameObject.Find ("AnimalFactory").GetComponent<AnimalFactory>();
@@ -123,7 +125,8 @@ public IEnumerator moveTo(Vector2 to)
                 }
         }
         Debug.LogWarning ("leave corouting");
-}
+        
+    }
 
 public IEnumerator randomizeRoaming()
 {
@@ -140,11 +143,13 @@ public IEnumerator randomizeRoaming()
                 List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
 
                 if (path.Count > 0) {
-                        PathFind.Point next = path[0];
+                ishunting = true;
+                PathFind.Point next = path[0];
                         yield return moveTo(next.toVector());
-                }
-
-                yield return null;
+                
+            }
+            ishunting = false;
+            yield return null;
         }
 }
 
@@ -218,6 +223,11 @@ public bool[,] getCollisionMap(TileTypes[,] tileMap)
 
 
 
+        }
+
+        if (col.gameObject.tag == "Cat")
+        {
+            Debug.Log("You Died");
         }
 
     }
