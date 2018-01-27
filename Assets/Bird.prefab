@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4596082257087924}
   - component: {fileID: 212227951640541878}
-  - component: {fileID: 114025289192920140}
+  - component: {fileID: 114203383204269728}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114025289192920140
+--- !u!114 &114203383204269728
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1830843183407922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af8b8f44c9233a44d9ce9c097ba77753, type: 3}
+  m_Script: {fileID: 11500000, guid: e248daf104835405f9af57b81939ca4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRoaming: 0
