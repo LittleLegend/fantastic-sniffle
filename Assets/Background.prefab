@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4125628076401448}
   - component: {fileID: 212724832146752242}
-  - component: {fileID: 50388247672423806}
-  - component: {fileID: 61792146168759938}
-  - component: {fileID: 114842918699914328}
+  - component: {fileID: 50523706589725768}
+  - component: {fileID: 61483331011949624}
+  - component: {fileID: 114149546759543414}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -43,7 +43,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50388247672423806
+--- !u!50 &50523706589725768
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61792146168759938
+--- !u!61 &61483331011949624
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114842918699914328
+--- !u!114 &114149546759543414
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputController: {fileID: 0}
+  tileFactory: {fileID: 0}
+  myType: 0
 --- !u!212 &212724832146752242
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -134,7 +136,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 8e2385a14c221e846bf7bfa64db66c08, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -142,5 +144,5 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0

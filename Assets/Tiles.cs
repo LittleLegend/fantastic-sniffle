@@ -13,7 +13,7 @@ public class Tiles : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        InputController = gameObject.GetComponent<InputController>();
+        InputController = GameObject.Find("Map").GetComponent<InputController>();
         tileFactory = GameObject.Find("TileFactory").GetComponent<TileFactory>();
     }
 
@@ -28,7 +28,7 @@ public class Tiles : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            tileFactory.addTile(TileTypes.Stonewall, gameObject.transform.position);
+            tileFactory.addTile(InputController.GetComponent<InputController>().currentMode, gameObject.transform.position);
             tileFactory.destroyTile(gameObject);
         }
     }
