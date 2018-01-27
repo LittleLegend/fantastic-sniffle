@@ -1,17 +1,17 @@
 // const {} from 'lodash'
 
 const number2Enum = {
-  0: "TileTypes.DeepC_180",
-  1: "TileTypes.DeepB_90",
-  2: "TileTypes.DeepB_180",
-  3: "TileTypes.Stonewall",
-  4: "TileTypes.Water",
-  5: "TileTypes.DeepA",
-  6: "TileTypes.DeepB_0",
-  7: "TileTypes.DeepB_270",
-  8: "TileTypes.Thorntendrils",
-  9: "TileTypes.Background",
-  10: "TileTypes.DeepC_0"
+  1: "TileTypes.DeepC_180",
+  2: "TileTypes.DeepB_90",
+  3: "TileTypes.DeepB_180",
+  4: "TileTypes.Stonewall",
+  5: "TileTypes.Water",
+  6: "TileTypes.DeepA",
+  7: "TileTypes.DeepB_0",
+  8: "TileTypes.DeepB_270",
+  9: "TileTypes.Thorntendrils",
+  10: "TileTypes.Background",
+  11: "TileTypes.DeepC_0"
 };
 
 const tiledmap = require("../Assets/TilemapJSON.json");
