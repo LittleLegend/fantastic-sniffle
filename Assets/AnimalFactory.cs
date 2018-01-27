@@ -27,17 +27,15 @@ void Update () {
 }
 
 public void addAnimal(AnimalType animal, Vector2 position) {
-        Vector2 gameFieldPosition = new Vector2(position.x, -1 * position.y);
-
         switch (animal) {
         case (AnimalType.Cat):
-                Cats.Add(Instantiate (Cat, gameFieldPosition, Quaternion.identity));
+                Cats.Add(Instantiate (Cat, position, Quaternion.identity));
                 break;
         case (AnimalType.Bird):
-                Birds.Add(Instantiate (Bird, gameFieldPosition, Quaternion.identity));
+                Birds.Add(Instantiate (Bird, position, Quaternion.identity));
                 break;
         case (AnimalType.Turtle):
-                Turtles.Add(Instantiate (Turtle, gameFieldPosition, Quaternion.identity));
+                Turtles.Add(Instantiate (Turtle, position, Quaternion.identity));
                 break;
 
         default:
@@ -55,13 +53,13 @@ public IEnumerator createRandomAnimals () {
 
                 switch (rand) {
                 case (AnimalType.Cat):
-                        position= new Vector2(4, 3);
+                        position= Level1.CatSpawnPoint;
                         break;
                 case (AnimalType.Turtle):
-                        position = new Vector2(0,0);
+                        position = Level1.TurtleSpawnPoint;
                         break;
                 case (AnimalType.Bird):
-                        position = new Vector2(9,0);
+                        position = Level1.BirdSpawnPoint;
                         break;
                 default:
                         position = new Vector2(9,0);
