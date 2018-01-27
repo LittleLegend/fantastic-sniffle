@@ -57,22 +57,25 @@ public void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag=="Tile" )
         {
+            col.gameObject.GetComponent<Tiles>().hasAnimal = true;
+
             if (col.gameObject.GetComponent<Tiles>().myType == TileTypes.Stonewall)
             {
                 gameObject.GetComponent<Animator>().SetBool("fly", true);
                 gameObject.GetComponent<SpriteRenderer>().sortingOrder=3;
             }
             
-           
-
         }
 
     }
     public void OnTriggerExit2D(Collider2D col)
     {
+       
 
         if (col.gameObject.tag == "Tile")
         {
+            col.gameObject.GetComponent<Tiles>().hasAnimal = false;
+
             if (col.gameObject.GetComponent<Tiles>().myType == TileTypes.Stonewall)
             {
                 gameObject.GetComponent<Animator>().SetBool("fly", false);

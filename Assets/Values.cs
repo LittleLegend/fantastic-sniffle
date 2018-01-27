@@ -8,11 +8,11 @@ public class Values : MonoBehaviour {
     public int stonewallCount;
     public int waterCount;
     public int thorntendrilsCount;
-    public int deepCount;
+    
     public TextMeshProUGUI stonewallLabel;
     public TextMeshProUGUI waterLabel;
     public TextMeshProUGUI thorntendrilsLabel;
-    public TextMeshProUGUI deepLabel;
+
 
 
 
@@ -33,7 +33,7 @@ public class Values : MonoBehaviour {
         stonewallLabel.text = stonewallCount.ToString();
         waterLabel.text = waterCount.ToString();
         thorntendrilsLabel.text = thorntendrilsCount.ToString();
-        deepLabel.text = deepCount.ToString();
+       
 
 
     }

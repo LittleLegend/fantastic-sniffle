@@ -9,6 +9,7 @@ public class Tiles : MonoBehaviour
     public TileFactory tileFactory;
     public Values Values;
     public TileTypes myType;
+    public bool hasAnimal;
 
 
 
@@ -30,7 +31,11 @@ public class Tiles : MonoBehaviour
         public void OnMouseOver()
     {
         InputController.currentTile = gameObject.GetComponent<Tiles>();
-        if (Input.GetMouseButton(0) && InputController.currentMode != InputController.currentTile.myType )
+        if (Input.GetMouseButton(0) && 
+            InputController.currentMode != InputController.currentTile.myType && 
+            InputController.currentTile.myType == TileTypes.Background &&
+            InputController.currentTile.hasAnimal==false
+            )
         {
             TileCount();
             
@@ -76,13 +81,8 @@ public class Tiles : MonoBehaviour
                 }
                 break;
 
-            case TileTypes.DeepA:
-                if (Values.deepCount > 0)
-                {
-                    Values.deepCount -= 1;
-                    DestroyAdd();
-                }
-                break;
+            
+                
 
 
         }
