@@ -74,7 +74,6 @@ public IEnumerator roaming()
 
                 if (rand == Direction.UP)
                 {
-// gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
                         Point = new Vector3(transform.position.x, transform.position.y+ roamingDistance, 0);
                 }
 
@@ -86,7 +85,6 @@ public IEnumerator roaming()
 
                 if (rand == Direction.DOWN)
                 {
-// gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
                         Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
                 }
 
