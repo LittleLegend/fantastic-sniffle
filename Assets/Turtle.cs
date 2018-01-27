@@ -12,6 +12,7 @@ public TileFactory tileFactory;
 void Start () {
         alive = true;
         StartCoroutine(randomizeRoaming(50,1));
+        tileFactory = GameObject.Find ("TileFactory").GetComponent<TileFactory>();
 }
 
 void Update () {
@@ -191,6 +192,14 @@ public bool[,] getCollisionMapTurtle(TileTypes[,] tileMap)
                                 break;
                         }
                 }
+        }
+
+        foreach (var tile in tileFactory.thorntendrils) {
+                collisionMap[Mathf.RoundToInt (tile.transform.position.x),Mathf.RoundToInt (tile.transform.position.y) * -1] = false;
+        }
+
+        foreach (var tile in tileFactory.stonewalls) {
+                collisionMap[Mathf.RoundToInt (tile.transform.position.x),Mathf.RoundToInt (tile.transform.position.y) * -1] = false;
         }
 
         return collisionMap;
