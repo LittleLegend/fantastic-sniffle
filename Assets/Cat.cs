@@ -12,9 +12,9 @@ public AnimalFactory animalFactory;
 
 void Start () {
         alive = true;
-        StartCoroutine(randomizeRoaming(50,1));
         tileFactory = GameObject.Find ("TileFactory").GetComponent<TileFactory>();
         animalFactory = GameObject.Find ("AnimalFactory").GetComponent<AnimalFactory>();
+        StartCoroutine(randomizeRoaming());
 }
 
 void Update () {
@@ -133,18 +133,11 @@ public IEnumerator roaming()
         }
 }
 
-public IEnumerator randomizeRoaming(int percent, int seconds)
+public IEnumerator randomizeRoaming()
 {
         while (alive == true)
         {
-                yield return new WaitForSeconds(seconds);
-
-                if (Random.Range(0, 100) < percent && isRoaming == false)
-                {
-
-                        StartCoroutine(roaming());
-                        isRoaming = true;
-                }
+                yield return roaming();
         }
 }
 
