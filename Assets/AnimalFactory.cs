@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum AnimalType {Cat, Bird, Turtle};
 
@@ -31,8 +32,8 @@ public IEnumerator checkWinPerSecond(int sek)
                 if( checkWinCon())
                 {
 
-                        Debug.Log("You Won");
-                }
+                SceneManager.LoadScene(5);
+            }
         }
 
 }

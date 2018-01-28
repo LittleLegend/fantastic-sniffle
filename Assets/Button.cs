@@ -18,6 +18,34 @@ public class Button : MonoBehaviour {
 public void Restart()
     {
 
+        SceneManager.LoadScene(1);
+
+    }
+
+    public void Exit()
+    {
+
+        Application.Quit();
+
+    }
+
+    public void Starting()
+    {
+
+        SceneManager.LoadScene(1);
+
+    }
+
+    public void Credits()
+    {
+
+        SceneManager.LoadScene(6);
+
+    }
+
+    public void Menue()
+    {
+
         SceneManager.LoadScene(0);
 
     }

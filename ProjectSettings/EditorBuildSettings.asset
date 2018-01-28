@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Menue.unity
+    guid: 33cb84c70b8c63b4b9095280b68dc93e
+  - enabled: 1
     path: Assets/Level1.unity
     guid: 2a15b41e435ce874ab0c2c9de0cc4612
   - enabled: 1
@@ -17,3 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DeathTurtleCat.unity
     guid: 7777f0ead09e37042af2fa7fee2e27e4
+  - enabled: 1
+    path: Assets/WinScreen.unity
+    guid: 264594db35387394a9232c3c48a7a45c
+  - enabled: 1
+    path: Assets/Credits.unity
+    guid: dc1356bd383e3774e95272418748e170

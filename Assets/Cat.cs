@@ -233,7 +233,7 @@ public bool[,] getCollisionMap(TileTypes[,] tileMap)
         {
             if (!StateManager.death.isPlaying)
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(3);
             }
             StateManager.theme.Stop();
         }
