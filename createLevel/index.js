@@ -14,7 +14,8 @@ const number2Enum = {
   11: "TileTypes.DeepC_0",
   12: "TileTypes.DeepC_270",
   13: "TileTypes.DeepA_90",
-  14: "TileTypes.DeepC_90"
+  14: "TileTypes.DeepC_90",
+  15: "TileTypes.DeepS"
 };
 
 const tiledmap = require("../Assets/Level1.json");
