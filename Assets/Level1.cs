@@ -3,15 +3,21 @@ using UnityEngine;
 public class SpawnPoint {
 	public Vector2 position;
 	public int unitsToSpawn;
+	public int resetter;
   
   public SpawnPoint(Vector2 _position, int _unitsToSpawn) {
     position = _position;
     unitsToSpawn = _unitsToSpawn;
+    resetter = _unitsToSpawn;
   }
   
   public void unitSpawned() {
     unitsToSpawn--;
   }
+	
+	public void reset() {
+		unitsToSpawn = resetter;
+	}
 }
 
 public class Level1 {
@@ -36,5 +42,17 @@ static public TileTypes[,] tilemap = new TileTypes[,] {
 static public SpawnPoint[] catSpawnPoints = new SpawnPoint[] {new SpawnPoint(new Vector2(1, -6), 2)};
 static public SpawnPoint[] turtleSpawnPoints = new SpawnPoint[] {new SpawnPoint(new Vector2(12, -6), 2)};
 static public SpawnPoint[] birdSpawnPoints = new SpawnPoint[] {new SpawnPoint(new Vector2(8, 0), 3)};
+
+static public void reset() {
+	foreach(var sp in catSpawnPoints) {
+		sp.reset();
+	}
+	foreach(var sp in turtleSpawnPoints) {
+		sp.reset();
+	}
+	foreach(var sp in birdSpawnPoints) {
+		sp.reset();
+	}
+}
 }
 

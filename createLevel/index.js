@@ -75,6 +75,7 @@ console.log(`using UnityEngine;
 public class SpawnPoint {
 	public Vector2 position;
 	public int unitsToSpawn;
+  resetter = _unitsToSpawn;
   
   public SpawnPoint(Vector2 _position, int _unitsToSpawn) {
     position = _position;
@@ -84,6 +85,10 @@ public class SpawnPoint {
   public void unitSpawned() {
     unitsToSpawn--;
   }
+	
+	public void reset() {
+		unitsToSpawn = resetter;
+	}
 }
 
 public class Level1 {
@@ -102,6 +107,18 @@ static public SpawnPoint[] turtleSpawnPoints = new SpawnPoint[] {${toStruct(
 static public SpawnPoint[] birdSpawnPoints = new SpawnPoint[] {${toStruct(
   birdSpawnPoint
 )}};
+
+static public void reset() {
+	foreach(var sp in catSpawnPoints) {
+		sp.reset();
+	}
+	foreach(var sp in turtleSpawnPoints) {
+		sp.reset();
+	}
+	foreach(var sp in birdSpawnPoints) {
+		sp.reset();
+	}
+}
 }
 `);
 

@@ -19,7 +19,7 @@ public GameObject StateManager;
 
 // Use this for initializ ation
 void Start () {
-        // createRandomAnimals();
+        Level1.reset();
         StartCoroutine(checkWinPerSecond(1));
         StartCoroutine(createRandomAnimals());
 }
