@@ -10,13 +10,13 @@ public int speed;
 public bool alive;
 public TileFactory tileFactory;
 public AnimalFactory animalFactory;
-public  bool ishunting = false;
+public bool ishunting = false;
 public bool hashunted = false;
 public StateManager StateManager;
-   
 
 
-    void Start () {
+
+void Start () {
         alive = true;
         tileFactory = GameObject.Find ("TileFactory").GetComponent<TileFactory>();
         StateManager = GameObject.Find("StateManager").GetComponent<StateManager>();
@@ -61,46 +61,50 @@ public Direction getDirection(Vector2 from, Vector2 to) {
 }
 
 public void OnTriggerEnter2D(Collider2D col)
-    {
+{
         if(col.gameObject.tag=="Tile" )
         {
-            col.gameObject.GetComponent<Tiles>().hasAnimal = true;
+                col.gameObject.GetComponent<Tiles>().hasAnimal = true;
 
-            if (col.gameObject.GetComponent<Tiles>().myType == TileTypes.Stonewall)
-            {
-                gameObject.GetComponent<Animator>().SetBool("fly", true);
-                gameObject.GetComponent<SpriteRenderer>().sortingOrder=3;
-            }
-            
+                if (col.gameObject.GetComponent<Tiles>().myType == TileTypes.Stonewall)
+                {
+                        gameObject.GetComponent<Animator>().SetBool("fly", true);
+                        gameObject.GetComponent<SpriteRenderer>().sortingOrder=3;
+                }
+
         }
 
         if (col.gameObject.tag == "Turtle")
         {
+
             if (!StateManager.death.isPlaying)
             {
                 SceneManager.LoadScene(2);
                
             }
 
-            StateManager.theme.Stop();
+
+                
+
+                StateManager.theme.Stop();
         }
 
-        }
-    public void OnTriggerExit2D(Collider2D col)
-    {
-       
+}
+public void OnTriggerExit2D(Collider2D col)
+{
+
 
         if (col.gameObject.tag == "Tile")
         {
-            col.gameObject.GetComponent<Tiles>().hasAnimal = false;
+                col.gameObject.GetComponent<Tiles>().hasAnimal = false;
 
-            if (col.gameObject.GetComponent<Tiles>().myType == TileTypes.Stonewall)
-            {
-                gameObject.GetComponent<Animator>().SetBool("fly", false);
-                
-            }
+                if (col.gameObject.GetComponent<Tiles>().myType == TileTypes.Stonewall)
+                {
+                        gameObject.GetComponent<Animator>().SetBool("fly", false);
+
+                }
         }
-    }
+}
 
 
 
@@ -111,6 +115,9 @@ public IEnumerator moveTo(Vector2 to)
         Direction rand = getDirection(gameObject.transform.position, to);
         Vector3 Point = Vector2.zero;
 
+        gameObject.GetComponent<Animator>().SetBool("up", false);
+        gameObject.GetComponent<Animator>().SetBool("down", false);
+
         if (rand == Direction.RIGHT)
         {
                 gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
@@ -120,6 +127,7 @@ public IEnumerator moveTo(Vector2 to)
         if (rand == Direction.UP)
         {
                 Point = new Vector3(transform.position.x, transform.position.y+ roamingDistance, 0);
+                gameObject.GetComponent<Animator>().SetBool("up", true);
         }
 
         if (rand == Direction.LEFT)
@@ -131,6 +139,7 @@ public IEnumerator moveTo(Vector2 to)
         if (rand == Direction.DOWN)
         {
                 Point = new Vector3(transform.position.x, transform.position.y - roamingDistance, 0);
+                gameObject.GetComponent<Animator>().SetBool("down", true);
         }
 
         if (rand == Direction.UP_RIGHT)
@@ -175,8 +184,8 @@ public IEnumerator moveTo(Vector2 to)
                 }
         }
         Debug.LogWarning ("leave corouting");
-       
-    }
+
+}
 
 public IEnumerator randomizeRoaming()
 {
@@ -193,13 +202,13 @@ public IEnumerator randomizeRoaming()
                 List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, from, to);
 
                 if (path.Count > 0) {
-                ishunting = true;
-                PathFind.Point next = path[0];
+                        ishunting = true;
+                        PathFind.Point next = path[0];
                         yield return moveTo(next.toVector());
-                
-            }
-            ishunting = false;
-            yield return null;
+
+                }
+                ishunting = false;
+                yield return null;
         }
 }
 
