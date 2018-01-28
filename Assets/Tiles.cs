@@ -5,79 +5,80 @@ using UnityEngine;
 public class Tiles : MonoBehaviour
 {
 
-    public InputController InputController;
-    public TileFactory tileFactory;
-    public Values Values;
-    public TileTypes myType;
-    public bool hasAnimal;
+public InputController InputController;
+public TileFactory tileFactory;
+public Values Values;
+public TileTypes myType;
+public bool hasAnimal;
+public bool hasSpawnpoint;
 
 
-
-    // Use this for initialization
-    void Start()
-    {
+// Use this for initialization
+void Start()
+{
         Values = GameObject.Find("Values").GetComponent<Values>();
         InputController = GameObject.Find("Map").GetComponent<InputController>();
         tileFactory = GameObject.Find("TileFactory").GetComponent<TileFactory>();
-    }
+}
 
-    // Update is called once per frame
-    void Update()
-    {
+// Update is called once per frame
+void Update()
+{
 
-    }
+}
 
-    
-        public void OnMouseOver()
-    {
+
+public void OnMouseOver()
+{
         InputController.currentTile = gameObject.GetComponent<Tiles>();
-        if (Input.GetMouseButton(0) && 
-            InputController.currentMode != InputController.currentTile.myType && 
+        if (Input.GetMouseButton(0) &&
+            InputController.currentMode != InputController.currentTile.myType &&
             InputController.currentTile.myType == TileTypes.Background &&
-            InputController.currentTile.hasAnimal==false
+            InputController.currentTile.hasAnimal==false &&
+            InputController.currentTile.hasSpawnpoint==false
             )
         {
-            TileCount();
-            
+                TileCount();
+
 
         }
-    }
+}
 
 
-    public void DestroyAdd()
-    {
+public void DestroyAdd()
+{
         tileFactory.addTile(InputController.GetComponent<InputController>().currentMode, gameObject.transform.position);
         tileFactory.destroyTile(gameObject, InputController.GetComponent<InputController>().currentMode);
-    }
+}
 
-    public void TileCount()
-    {
+public void TileCount()
+{
         TileTypes type= InputController.GetComponent<InputController>().currentMode;
 
         switch (type)
         {
-            case TileTypes.Stonewall:
+        case TileTypes.Stonewall:
                 if (Values.stonewallCount > 0)
                 {
-                    Values.stonewallCount -= 1;
-                    DestroyAdd();
+                        Values.stonewallCount -= 1;
+                        DestroyAdd();
                 }
 
                 break;
 
-            case TileTypes.Water:
+        case TileTypes.Water:
                 if (Values.waterCount > 0)
                 {
-                    Values.waterCount -= 1;
-                    DestroyAdd();
+                        Values.waterCount -= 1;
+                        DestroyAdd();
                 }
                 break;
 
-            case TileTypes.Thorntendrils:
+        case TileTypes.Thorntendrils:
                 if (Values.thorntendrilsCount > 0)
                 {
-                    Values.thorntendrilsCount -= 1;
-                    DestroyAdd();
+                        Values.thorntendrilsCount -= 1;
+                        DestroyAdd();
                 }
                 break;
 
@@ -87,7 +88,7 @@ public class Tiles : MonoBehaviour
         }
 
 
-    }
+}
 
 
-    }
+}

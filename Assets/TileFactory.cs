@@ -99,23 +99,18 @@ public void destroyTile(GameObject ClickedTile, TileTypes type)
 public void createsTiles() {
         int width = Level1.tilemap.GetLength(0);
         int height = Level1.tilemap.GetLength(1);
-        
-		Instantiate (Bird_Spawn, Level1.birdSpawnPoints[0].position, Quaternion.identity);
-		Instantiate (CatSpawn, Level1.catSpawnPoints[0].position, Quaternion.identity);
-		Instantiate (TurtleSpawn, Level1.turtleSpawnPoints[0].position, Quaternion.identity);
 
         for (int x=0; x < width; x++)
         {
                 for(int y=0; y < height; y++)
                 {
+                        Vector2 position = new Vector2 (x, -y);
+                        GameObject AddedTile = null;
 
                         switch (Level1.tilemap[x,y]) {
-
-
                         case (TileTypes.Background):
-
                                 Debug.Log ("create Background at " + x + ", " + y);
-                                GameObject AddedTile=Instantiate (Background, new Vector2 (x, -y), Quaternion.identity);
+                                AddedTile=Instantiate (Background, new Vector2 (x, -y), Quaternion.identity);
                                 AddedTile.GetComponent<Tiles>().myType = TileTypes.Background;
                                 break;
                         case (TileTypes.Stonewall):
@@ -123,7 +118,6 @@ public void createsTiles() {
                                 AddedTile = Instantiate(Stonewall, new Vector2(x, -y), Quaternion.identity);
                                 stonewalls.Add(AddedTile);
                                 AddedTile.GetComponent<Tiles>().myType = TileTypes.Stonewall;
-
                                 break;
                         case (TileTypes.Water):
                                 Debug.Log ("create Background at " + x + ", " + y);
@@ -136,7 +130,7 @@ public void createsTiles() {
                                 AddedTile = Instantiate(Thorntendrils, new Vector2(x, -y), Quaternion.identity);
                                 thorntendrils.Add(AddedTile);
                                 AddedTile.GetComponent<Tiles>().myType = TileTypes.Thorntendrils;
-                        break;
+                                break;
                         case (TileTypes.DeepA_0):
                                 Debug.Log ("create Background at " + x + ", " + y);
                                 AddedTile = Instantiate(DeepA, new Vector2(x, -y), Quaternion.identity);
@@ -199,6 +193,27 @@ public void createsTiles() {
                                 break;
                         default:
                                 break;
+                        }
+
+                        foreach (var sp in Level1.birdSpawnPoints) {
+                                if (sp.position.Equals(position)) {
+                                        Instantiate (Bird_Spawn, Level1.birdSpawnPoints[0].position, Quaternion.identity);
+                                        AddedTile.GetComponent<Tiles>().hasSpawnpoint = true;
+                                }
+                        }
+
+                        foreach (var sp in Level1.catSpawnPoints) {
+                                if (sp.position.Equals(position)) {
+                                        Instantiate (CatSpawn, Level1.catSpawnPoints[0].position, Quaternion.identity);
+                                        AddedTile.GetComponent<Tiles>().hasSpawnpoint = true;
+                                }
+                        }
+
+                        foreach (var sp in Level1.turtleSpawnPoints) {
+                                if (sp.position.Equals(position)) {
+                                        Instantiate (TurtleSpawn, Level1.turtleSpawnPoints[0].position, Quaternion.identity);
+                                        AddedTile.GetComponent<Tiles>().hasSpawnpoint = true;
+                                }
                         }
                 }
 
