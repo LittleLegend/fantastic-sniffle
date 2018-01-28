@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bird : MonoBehaviour {
 public bool isRoaming=false;
@@ -77,7 +78,8 @@ public void OnTriggerEnter2D(Collider2D col)
         {
             if (!StateManager.death.isPlaying)
             {
-                StateManager.death.Play();
+                SceneManager.LoadScene(1);
+               
             }
 
             StateManager.theme.Stop();
@@ -158,7 +160,7 @@ public IEnumerator moveTo(Vector2 to)
         Vector3 AnimalStartPosition = gameObject.transform.position;
         Vector3 dir = (Point - AnimalStartPosition).normalized;
 
-        while (true) {
+        while (alive==true) {
                 float distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
 
                 if (distanceToPoint >= 0.01)

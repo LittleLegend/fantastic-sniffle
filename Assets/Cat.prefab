@@ -143,8 +143,11 @@ MonoBehaviour:
   roamingDistance: 1
   speed: 1
   alive: 0
+  ishunting: 0
+  hashunted: 0
   tileFactory: {fileID: 0}
   animalFactory: {fileID: 0}
+  StateManager: {fileID: 0}
 --- !u!212 &212328663143933958
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -178,7 +181,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 34422f5fbbdfeca438fcd423cd56e81c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

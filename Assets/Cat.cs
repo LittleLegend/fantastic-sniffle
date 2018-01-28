@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Cat : MonoBehaviour {
 public bool isRoaming=false;
@@ -112,7 +113,7 @@ public IEnumerator moveTo(Vector2 to)
         Vector3 AnimalStartPosition = gameObject.transform.position;
         Vector3 dir = (Point - AnimalStartPosition).normalized;
 
-        while (true) {
+        while (alive == true) {
                 float distanceToPoint = Vector2.Distance(Point, gameObject.transform.position);
 
                 if (distanceToPoint >= 0.01)
@@ -232,7 +233,7 @@ public bool[,] getCollisionMap(TileTypes[,] tileMap)
         {
             if (!StateManager.death.isPlaying)
             {
-                StateManager.death.Play();
+                SceneManager.LoadScene(2);
             }
             StateManager.theme.Stop();
         }

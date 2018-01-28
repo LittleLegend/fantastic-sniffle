@@ -8,3 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level1.unity
     guid: 2a15b41e435ce874ab0c2c9de0cc4612
+  - enabled: 1
+    path: Assets/DeathBirdTurtle.unity
+    guid: 29047714894e8304c8bf04a55ae8e729
+  - enabled: 1
+    path: Assets/DeathCatBird.unity
+    guid: 8307acb82f806864f99d0b054e25ccb8
+  - enabled: 1
+    path: Assets/DeathTurtleCat.unity
+    guid: 7777f0ead09e37042af2fa7fee2e27e4
