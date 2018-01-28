@@ -24,51 +24,51 @@ void Start () {
 }
 
 public IEnumerator checkWinPerSecond(int sek)
-    {
+{
         while(true)
         {
-            yield return new WaitForSeconds(sek);
-           if( checkWinCon())
-            {
+                yield return new WaitForSeconds(sek);
+                if( checkWinCon())
+                {
 
-                Debug.Log("You Won");
-            }
+                        Debug.Log("You Won");
+                }
         }
-        
-    }
+
+}
 
 public bool checkWinCon()
-    {
+{
         if(Cats.Count==0 || Birds.Count == 0 || Turtles.Count == 0 )
         { return false; }
 
         foreach (var cat in Cats)
         {
-            if (cat.GetComponent<Cat>().ishunting)
-            {
-                return false;
-            }
+                if (cat.GetComponent<Cat>().ishunting)
+                {
+                        return false;
+                }
         }
 
         foreach (var turtle in Turtles)
         {
-            if (turtle.GetComponent<Turtle>().ishunting)
-            {
-                return false;
-            }
+                if (turtle.GetComponent<Turtle>().ishunting)
+                {
+                        return false;
+                }
         }
 
         foreach (var bird in Birds)
         {
-            if (bird.GetComponent<Bird>().ishunting)
-            {
-                return false;
-            }
+                if (bird.GetComponent<Bird>().ishunting)
+                {
+                        return false;
+                }
         }
 
         return true;
 
-    }
+}
 
 // Update is called once per frame
 void Update () {
@@ -97,7 +97,12 @@ public IEnumerator createRandomAnimals () {
         // addAnimal(AnimalType.Turtle, new Vector2(0, 0));
         // addAnimal(AnimalType.Bird, new Vector2(9, 0));
         while (true) {
-                AnimalType rand = (AnimalType) Random.Range(0, 3);
+                float turtleChance = Random.Range(0, 10) / (Turtles.Count + 1);
+                float birdChance = Random.Range(0, 10) / (Birds.Count + 1);
+                float catChance = Random.Range(0, 10) / (Cats.Count + 1);
+                float wonChance = Mathf.Max (new float[] { turtleChance, birdChance, catChance });
+
+                AnimalType rand = wonChance == turtleChance ? AnimalType.Turtle : wonChance == birdChance ? AnimalType.Bird : AnimalType.Cat;
                 Vector2 position;
 
                 switch (rand) {
