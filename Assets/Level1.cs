@@ -22,15 +22,15 @@ static public TileTypes[,] tilemap = new TileTypes[,] {
  {TileTypes.Background, TileTypes.Water, TileTypes.Water, TileTypes.Water, TileTypes.Thorntendrils, TileTypes.Water, TileTypes.Water} ,
  {TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background} ,
  {TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Stonewall, TileTypes.Background, TileTypes.Background, TileTypes.Background} ,
- {TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Stonewall, TileTypes.Stonewall, TileTypes.Background, TileTypes.Background} ,
- {TileTypes.Stonewall, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.Background, TileTypes.Background} ,
+ {TileTypes.Background, TileTypes.Background, TileTypes.Thorntendrils, TileTypes.Stonewall, TileTypes.Stonewall, TileTypes.Background, TileTypes.Background} ,
+ {TileTypes.Background, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.Background, TileTypes.Background} ,
  {TileTypes.Background, TileTypes.Background, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.Background, TileTypes.DeepC_270, TileTypes.Water} ,
  {TileTypes.Background, TileTypes.Water, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.DeepC_180, TileTypes.DeepA_90, TileTypes.Background} ,
  {TileTypes.Background, TileTypes.Background, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.Background, TileTypes.DeepC_90, TileTypes.Background} ,
  {TileTypes.Background, TileTypes.Background, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.Background, TileTypes.Background} ,
  {TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.Background} ,
- {TileTypes.Background, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.Thorntendrils} ,
- {TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Thorntendrils} 
+ {TileTypes.Stonewall, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Thorntendrils, TileTypes.Background, TileTypes.Background, TileTypes.Water} ,
+ {TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Water, TileTypes.Water} 
 };
 
 static public SpawnPoint[] catSpawnPoints = new SpawnPoint[] {new SpawnPoint(new Vector2(1, -6), 2)};
