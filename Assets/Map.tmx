@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="14" height="7" tilewidth="128" tileheight="128" nextobjectid="6">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="7" tilewidth="128" tileheight="128" nextobjectid="6">
  <tileset firstgid="1" name="Tileset" tilewidth="128" tileheight="128" tilecount="25" columns="5">
   <image source="Tileset.png" width="640" height="640"/>
  </tileset>
- <layer name="Kachelebene 1" width="14" height="7">
+ <layer name="Kachelebene 1" width="15" height="7">
   <data encoding="csv">
-5,10,10,10,10,10,4,10,10,10,10,10,10,10,
-5,10,5,10,10,10,4,10,4,10,10,10,9,10,
-10,10,5,10,12,14,4,4,4,4,4,10,9,10,
-10,5,5,10,9,9,9,10,1,10,4,10,10,10,
-10,10,5,10,10,10,9,10,6,10,4,4,4,10,
-5,10,5,10,9,10,9,10,11,10,4,10,10,10,
-10,10,5,10,9,10,10,10,10,10,10,10,9,9
+5,5,10,10,10,10,10,4,10,10,10,10,10,10,10,
+5,5,10,5,10,10,10,4,10,4,10,10,10,9,10,
+10,10,10,5,10,12,14,4,4,4,4,4,10,9,10,
+10,5,5,5,10,9,9,9,10,1,10,4,10,10,10,
+10,10,10,5,10,10,10,9,10,6,10,4,4,4,10,
+5,5,10,5,10,9,10,9,10,11,10,4,10,10,10,
+10,10,10,5,10,9,10,10,10,10,10,10,10,9,9
 </data>
  </layer>
  <objectgroup name="SpawnPoints">
-  <object id="2" name="Bird" x="928.114" y="41.7049" width="55.1331" height="55.1331"/>
-  <object id="3" name="Turtle" x="34.8984" y="803.189" width="60.6808" height="60.6808"/>
-  <object id="4" name="Cat" x="920.76" y="416.716" width="67.9685" height="64.8072"/>
+  <object id="2" name="Bird" x="1054.19" y="24.3905" width="55.1331" height="55.1331"/>
+  <object id="3" name="Turtle" x="1565.36" y="803.189" width="60.6808" height="60.6808"/>
+  <object id="4" name="Cat" x="161.88" y="799.556" width="67.9685" height="64.8072"/>
  </objectgroup>
 </map>
