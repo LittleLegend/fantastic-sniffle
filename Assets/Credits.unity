@@ -316,7 +316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -89, y: -326}
+  m_AnchoredPosition: {x: -89, y: -265}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803544770
@@ -340,7 +340,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Programming: Danny & Dominik
 
-    Art / Animation: Elise & Ilka'
+    Art / Animation: Elise & Ilka
+
+    Sound: Dave'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 12bd23140d6deb049bb4f92ef85465f6, type: 2}
   m_sharedMaterial: {fileID: 21664813202285938, guid: 12bd23140d6deb049bb4f92ef85465f6,
@@ -408,12 +410,12 @@ MonoBehaviour:
   m_margin: {x: -360.89447, y: 0, z: -691.9785, w: 0}
   m_textInfo:
     textComponent: {fileID: 803544770}
-    characterCount: 58
+    characterCount: 70
     spriteCount: 0
-    spaceCount: 9
-    wordCount: 7
+    spaceCount: 11
+    wordCount: 9
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
