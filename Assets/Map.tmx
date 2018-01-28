@@ -15,8 +15,20 @@
 </data>
  </layer>
  <objectgroup name="SpawnPoints">
-  <object id="2" name="Bird" x="1054.19" y="24.3905" width="55.1331" height="55.1331"/>
-  <object id="3" name="Turtle" x="1565.36" y="803.189" width="60.6808" height="60.6808"/>
-  <object id="4" name="Cat" x="161.88" y="799.556" width="67.9685" height="64.8072"/>
+  <object id="2" name="Bird" x="1054.19" y="24.3905" width="55.1331" height="55.1331">
+   <properties>
+    <property name="unitsToSpawn" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="3" name="Turtle" x="1565.36" y="803.189" width="60.6808" height="60.6808">
+   <properties>
+    <property name="unitsToSpawn" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4" name="Cat" x="161.88" y="799.556" width="67.9685" height="64.8072">
+   <properties>
+    <property name="unitsToSpawn" type="int" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

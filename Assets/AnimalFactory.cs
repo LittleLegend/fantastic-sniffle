@@ -103,26 +103,30 @@ public IEnumerator createRandomAnimals () {
                 float wonChance = Mathf.Max (new float[] { turtleChance, birdChance, catChance });
 
                 AnimalType rand = wonChance == turtleChance ? AnimalType.Turtle : wonChance == birdChance ? AnimalType.Bird : AnimalType.Cat;
-                Vector2 position;
+                SpawnPoint sp;
 
                 switch (rand) {
                 case (AnimalType.Cat):
-                        position= Level1.CatSpawnPoint;
+                        sp = Level1.catSpawnPoints[0];
                         break;
                 case (AnimalType.Turtle):
-                        position = Level1.TurtleSpawnPoint;
+                        sp = Level1.turtleSpawnPoints[0];
                         break;
                 case (AnimalType.Bird):
-                        position = Level1.BirdSpawnPoint;
+                        sp = Level1.birdSpawnPoints[0];
                         break;
                 default:
-                        position = new Vector2(9,0);
+                        sp = Level1.catSpawnPoints[0];
                         break;
                 }
 
-                addAnimal(rand, position);
+                if (sp.unitsToSpawn > 0) {
+				sp.unitSpawned ();
+                        addAnimal(rand, sp.position);
+                }
 
-                yield return new WaitForSeconds(5);
+
+                yield return new WaitForSeconds(1);
         }
 }
 

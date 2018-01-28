@@ -19,6 +19,14 @@
                  "height":55.1331,
                  "id":2,
                  "name":"Bird",
+                 "properties":
+                    {
+                     "unitsToSpawn":1
+                    },
+                 "propertytypes":
+                    {
+                     "unitsToSpawn":"int"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -30,6 +38,14 @@
                  "height":60.6808,
                  "id":3,
                  "name":"Turtle",
+                 "properties":
+                    {
+                     "unitsToSpawn":1
+                    },
+                 "propertytypes":
+                    {
+                     "unitsToSpawn":"int"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -41,6 +57,14 @@
                  "height":64.8072,
                  "id":4,
                  "name":"Cat",
+                 "properties":
+                    {
+                     "unitsToSpawn":1
+                    },
+                 "propertytypes":
+                    {
+                     "unitsToSpawn":"int"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,

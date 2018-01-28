@@ -1,5 +1,19 @@
 using UnityEngine;
+
+public class SpawnPoint {
+	public Vector2 position;
+	public int unitsToSpawn;
   
+  public SpawnPoint(Vector2 _position, int _unitsToSpawn) {
+    position = _position;
+    unitsToSpawn = _unitsToSpawn;
+  }
+  
+  public void unitSpawned() {
+    unitsToSpawn--;
+  }
+}
+
 public class Level1 {
 static public TileTypes[,] tilemap = new TileTypes[,] {
    {TileTypes.Water, TileTypes.Water, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Water, TileTypes.Background} ,
@@ -19,8 +33,8 @@ static public TileTypes[,] tilemap = new TileTypes[,] {
  {TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Background, TileTypes.Thorntendrils} 
 };
 
-static public Vector2 CatSpawnPoint = new Vector2(1, -6);
-static public Vector2 BirdSpawnPoint = new Vector2(8, 0);
-static public Vector2 TurtleSpawnPoint = new Vector2(12, -6);
+static public SpawnPoint[] catSpawnPoints = new SpawnPoint[] {new SpawnPoint(new Vector2(1, -6), 1)};
+static public SpawnPoint[] turtleSpawnPoints = new SpawnPoint[] {new SpawnPoint(new Vector2(12, -6), 1)};
+static public SpawnPoint[] birdSpawnPoints = new SpawnPoint[] {new SpawnPoint(new Vector2(8, 0), 1)};
 }
 

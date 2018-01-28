@@ -39,13 +39,19 @@ map.forEach((line, x) => {
 
 process._rawDebug(
   "map",
-  require("util").inspect(map, { depth: null, colors: true }),
+  require("util").inspect(map, {
+    depth: null,
+    colors: true
+  }),
   "\n"
 );
 
 process._rawDebug(
   "mapRotate",
-  require("util").inspect(mapRotate, { depth: null, colors: true }),
+  require("util").inspect(mapRotate, {
+    depth: null,
+    colors: true
+  }),
   "\n"
 );
 
@@ -64,7 +70,21 @@ tiledmap.layers[1].objects.forEach(o => {
 });
 
 console.log(`using UnityEngine;
+
+public class SpawnPoint {
+	public Vector2 position;
+	public int unitsToSpawn;
   
+  public SpawnPoint(Vector2 _position, int _unitsToSpawn) {
+    position = _position;
+    unitsToSpawn = _unitsToSpawn;
+  }
+  
+  public void unitSpawned() {
+    unitsToSpawn--;
+  }
+}
+
 public class Level1 {
 static public TileTypes[,] tilemap = new TileTypes[,] {
   ${mapRotate
@@ -72,14 +92,19 @@ static public TileTypes[,] tilemap = new TileTypes[,] {
     .join(",\n")}
 };
 
-static public Vector2 CatSpawnPoint = new Vector2(${Math.round(
-  catSpawnPoint.x / 128
-)}, ${-1 * Math.round(catSpawnPoint.y / 128)});
-static public Vector2 BirdSpawnPoint = new Vector2(${Math.round(
-  birdSpawnPoint.x / 128
-)}, ${-1 * Math.round(birdSpawnPoint.y / 128)});
-static public Vector2 TurtleSpawnPoint = new Vector2(${Math.round(
-  turtleSpawnPoint.x / 128
-)}, ${-1 * Math.round(turtleSpawnPoint.y / 128)});
+static public SpawnPoint[] catSpawnPoints = new SpawnPoint[] {${toStruct(
+  catSpawnPoint
+)}};
+static public SpawnPoint[] turtleSpawnPoints = new SpawnPoint[] {${toStruct(
+  turtleSpawnPoint
+)}};
+static public SpawnPoint[] birdSpawnPoints = new SpawnPoint[] {${toStruct(
+  birdSpawnPoint
+)}};
 }
 `);
+
+function toStruct(sp) {
+  return `new SpawnPoint(new Vector2(${Math.round(sp.x / 128)}, ${-1 *
+    Math.round(sp.y / 128)}), ${sp.properties.unitsToSpawn})`;
+}

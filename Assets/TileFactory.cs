@@ -100,9 +100,9 @@ public void createsTiles() {
         int width = Level1.tilemap.GetLength(0);
         int height = Level1.tilemap.GetLength(1);
         
-        Instantiate (Bird_Spawn, Level1.BirdSpawnPoint, Quaternion.identity);
-        Instantiate (CatSpawn, Level1.CatSpawnPoint, Quaternion.identity);
-        Instantiate (TurtleSpawn, Level1.TurtleSpawnPoint, Quaternion.identity);
+		Instantiate (Bird_Spawn, Level1.birdSpawnPoints[0].position, Quaternion.identity);
+		Instantiate (CatSpawn, Level1.catSpawnPoints[0].position, Quaternion.identity);
+		Instantiate (TurtleSpawn, Level1.turtleSpawnPoints[0].position, Quaternion.identity);
 
         for (int x=0; x < width; x++)
         {
