@@ -75,11 +75,12 @@ console.log(`using UnityEngine;
 public class SpawnPoint {
 	public Vector2 position;
 	public int unitsToSpawn;
-  resetter = _unitsToSpawn;
+	public int resetter;
   
   public SpawnPoint(Vector2 _position, int _unitsToSpawn) {
     position = _position;
     unitsToSpawn = _unitsToSpawn;
+  resetter = _unitsToSpawn;
   }
   
   public void unitSpawned() {

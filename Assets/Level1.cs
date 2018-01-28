@@ -8,7 +8,7 @@ public class SpawnPoint {
   public SpawnPoint(Vector2 _position, int _unitsToSpawn) {
     position = _position;
     unitsToSpawn = _unitsToSpawn;
-    resetter = _unitsToSpawn;
+  resetter = _unitsToSpawn;
   }
   
   public void unitSpawned() {
