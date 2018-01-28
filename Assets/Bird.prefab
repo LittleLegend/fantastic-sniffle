@@ -146,6 +146,9 @@ MonoBehaviour:
   alive: 0
   tileFactory: {fileID: 0}
   animalFactory: {fileID: 0}
+  ishunting: 0
+  hashunted: 0
+  StateManager: {fileID: 0}
 --- !u!212 &212227951640541878
 SpriteRenderer:
   m_ObjectHideFlags: 1
