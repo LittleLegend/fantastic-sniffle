@@ -86,6 +86,9 @@ namespace PathFind
                     if (x == 0 && y == 0)
                         continue;
 
+                    if (x != 0 && y != 0)
+                        continue;
+                    
                     int checkX = node.gridX + x;
                     int checkY = node.gridY + y;
 

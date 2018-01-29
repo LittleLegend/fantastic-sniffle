@@ -135,17 +135,10 @@ private static int GetDistance(Node nodeA, Node nodeB)
         int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
         int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
         
-        if (nodeA.gridX != nodeB.gridX &&  nodeA.gridY != nodeB.gridY) {
-          return (dstX + dstY) * 10;
-        }
+        if (dstX > dstY)
+                return 14 * dstY + 10 * (dstX - dstY);
         
-        return dstX + dstY;
-
-        // OLD IMPLEMENTATION
-        // if (dstx > dsty)
-        //         return 14 * dsty + 10 * (dstx - dsty);
-        // 
-        // return 14 * dstx + 10 * (dsty - dstx);
+        return 14 * dstX + 10 * (dstY - dstX);
 }
 }
 
