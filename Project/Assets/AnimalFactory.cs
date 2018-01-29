@@ -32,8 +32,8 @@ public IEnumerator checkWinPerSecond(int sek)
                 if( checkWinCon())
                 {
 
-                SceneManager.LoadScene(5);
-            }
+                        SceneManager.LoadScene(5);
+                }
         }
 
 }
@@ -94,9 +94,8 @@ public void addAnimal(AnimalType animal, Vector2 position) {
 }
 
 public IEnumerator createRandomAnimals () {
-        // addAnimal(AnimalType.Cat, new Vector2(4, 3));
-        // addAnimal(AnimalType.Turtle, new Vector2(0, 0));
-        // addAnimal(AnimalType.Bird, new Vector2(9, 0));
+        yield return new WaitForSeconds(5);
+        
         while (true) {
                 float turtleChance = Random.Range(0, 10) / (Turtles.Count + 1);
                 float birdChance = Random.Range(0, 10) / (Birds.Count + 1);
@@ -122,7 +121,7 @@ public IEnumerator createRandomAnimals () {
                 }
 
                 if (sp.unitsToSpawn > 0) {
-				sp.unitSpawned ();
+                        sp.unitSpawned ();
                         addAnimal(rand, sp.position);
                 }
 
